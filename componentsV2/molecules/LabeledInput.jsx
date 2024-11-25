@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { View, StyleSheet, Pressable } from 'react-native';
 import { Input, Icon } from '../atoms';
-import { Colors } from '../../styles/colors';
+import { Colors } from '../../constants/Colors';
 import Eye from '../../../assets/eye.svg';
 import EyeOff from '../../../assets/eye_off.svg';
 import { Feather } from '@expo/vector-icons';
@@ -35,13 +35,13 @@ const LabeledInput = ({
             translateY: 0,
             translateX: 0,
             fontSize: 15,
-            color: Colors.dimmedLight,
+            color: Colors.light.dimmedLight,
           },
           1: {
             translateY: -27,
             translateX: -10,
             fontSize: 12,
-            color: Colors.primaryLight,
+            color: Colors.light.primaryLight,
           },
         },
         400
@@ -60,13 +60,13 @@ const LabeledInput = ({
             translateY: -27,
             translateX: -10,
             fontSize: 12,
-            color: Colors.primaryLight,
+            color: Colors.light.primaryLight,
           },
           1: {
             translateY: 0,
             translateX: 0,
             fontSize: 15,
-            color: Colors.dimmedLight,
+            color: Colors.light.dimmedLight,
           },
         },
         400
@@ -108,7 +108,7 @@ const LabeledInput = ({
         style: {
           transform: [{ translateY: -27 }, { translateX: -10 }],
           fontSize: 12,
-          color: Colors.primaryLight,
+          color: Colors.light.primaryLight,
         },
       });
       setHasValue(true);
@@ -144,7 +144,7 @@ const LabeledInput = ({
         <Feather
           name="search"
           size={20}
-          color={Colors.primaryLight}
+          color={Colors.light.primaryLight}
           style={{
             position: 'absolute',
             right: 10,

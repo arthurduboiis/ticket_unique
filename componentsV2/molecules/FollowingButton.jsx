@@ -11,12 +11,12 @@ const FollowingButton = ({title = 'suivi', action = () => {}, ...props}) => {
         action()
         console.log("Following button pressed")
       }}
-      bgColor={Colors.dimmedLight}
+      bgColor={Colors.light.dimmedLight}
       paddingHorizontal={'10px'}
       paddingVertical={'6px'}
     >
-      <Native.StyledOwnersText color={Colors.primaryLight}>{title}</Native.StyledOwnersText>
-      <Chevron color={Colors.primaryLight} direction='down'/>
+      <Native.StyledOwnersText color={Colors.light.primaryLight}>{title}</Native.StyledOwnersText>
+      <Chevron color={Colors.light.primaryLight} direction='down'/>
     </Native.StyledButton>
   )
 }

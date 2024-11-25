@@ -38,7 +38,7 @@ const Tickets = ({
           <RefreshControl
             refreshing={refreshing}
             onRefresh={handleRefresh}
-            tintColor={Colors.primaryLight}
+            tintColor={Colors.light.primaryLight}
           />
         }
       >

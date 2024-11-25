@@ -1,6 +1,6 @@
 import React from 'react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { Colors } from '../../../styles/colors';
+import { Colors } from '../../../constants/Colors';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Keyboard, TouchableWithoutFeedback } from 'react-native';
 
@@ -22,7 +22,7 @@ const KeyboardAvoidingLayout = (props) => {
         alignItems: 'center',
       }}
       style={{
-        backgroundColor: Colors.primaryDark,
+        backgroundColor: Colors.light.primaryDark,
       }}
     >
       {props.children}

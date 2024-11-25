@@ -1,6 +1,6 @@
 import React from 'react';
 import { Native } from '../../nanites';
-import { Colors } from '../../../styles/colors';
+import { Colors } from '../../../constants/Colors';
 
 const Number = ({ action = () => {}, number, selected = false, ...props }) => {
   return (
@@ -11,11 +11,11 @@ const Number = ({ action = () => {}, number, selected = false, ...props }) => {
       onPress={() => {
         action();
       }}
-      bgColor={selected ? Colors.dimmedLight : Colors.secondaryDark}
+      bgColor={selected ? Colors.light.dimmedLight : Colors.light.secondaryDark}
       width={'45px'}
       {...props}
     >
-      <Native.StyledOwnersText fontSize={'18px'} color={Colors.primaryLight}>
+      <Native.StyledOwnersText fontSize={'18px'} color={Colors.light.primaryLight}>
         {number ? number : 0}
       </Native.StyledOwnersText>
     </Native.StyledButton>

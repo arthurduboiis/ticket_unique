@@ -1,14 +1,11 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Colors } from '../styles/colors';
+import { Colors } from '../constants/Colors';
 import { globalStyles as global } from '../styles/global';
-import useFilterStore from '../services/FilterStore';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Home from '../../assets/nav/home.svg';
 import HomeFocused from '../../assets/nav/home-focused.svg';
 import Ticket from '../../assets/nav/ticket.svg';
 import TicketFocused from '../../assets/nav/ticket-focused.svg';
-import SecondHand from '../../assets/nav/hand-shake-heart.svg';
-import SecondHandFocused from '../../assets/nav/hand-shake-heart-focused.svg';
 import Profile from '../../assets/nav/profil.svg';
 import ProfileFocused from '../../assets/nav/profil-focused.svg';
 import ProfileStackNavigator from './ProfileStackNavigator';
@@ -19,14 +16,13 @@ const Tab = createBottomTabNavigator();
 
 function MainTabNavigator() {
   const globalStyles = global();
-  const resetFilters = useFilterStore((state) => state.resetFilters);
   const insets = useSafeAreaInsets();
 
   const reset = (event, name) => {
     const isFocused = event.target === name;
 
     if (!isFocused && event.type === 'tabPress') {
-      resetFilters();
+      console.log('reset filter');
     }
     if (isFocused) {
       e.preventDefault();
@@ -42,7 +38,7 @@ function MainTabNavigator() {
           height: 60 + insets.bottom,
           borderTopWidth: 0,
           paddingVertical: 10,
-          backgroundColor: Colors.primaryDark,
+          backgroundColor: Colors.light.primaryDark,
         },
         tabBarLabelStyle: {
           display: 'flex',
@@ -64,12 +60,6 @@ function MainTabNavigator() {
               ) : (
                 <Ticket {...globalStyles.buttonIcon} />
               );
-            case 'Seconde main':
-              return focused ? (
-                <SecondHandFocused {...globalStyles.buttonIcon} />
-              ) : (
-                <SecondHand {...globalStyles.buttonIcon} />
-              );
             case 'Mon profil':
               return focused ? (
                 <ProfileFocused {...globalStyles.buttonIcon} />
@@ -78,8 +68,8 @@ function MainTabNavigator() {
               );
           }
         },
-        tabBarActiveTintColor: Colors.yellow,
-        tabBarInactiveTintColor: Colors.primaryLight,
+        tabBarActiveTintColor: Colors.light.yellow,
+        tabBarInactiveTintColor: Colors.light.primaryLight,
       })}
     >
       <Tab.Screen

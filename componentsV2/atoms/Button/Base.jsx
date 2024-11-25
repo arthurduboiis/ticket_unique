@@ -10,10 +10,10 @@ const Base = ({ title, action = () => {} , darkmode = false,...props}) => {
         action();
         console.log("Primary button pressed");
       }}
-      bgColor={darkmode ? Colors.primaryDark : Colors.yellow}
+      bgColor={darkmode ? Colors.light.primaryDark : Colors.light.yellow}
       {...props}
     >
-      <Native.StyledOwnersText fontSize="18px" color={darkmode ? Colors.primaryLight : Colors.primaryDark}>
+      <Native.StyledOwnersText fontSize="18px" color={darkmode ? Colors.light.primaryLight : Colors.light.primaryDark}>
         {title ? title : defaultTitle}
       </Native.StyledOwnersText>
     </Native.StyledButton>

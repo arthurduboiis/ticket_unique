@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Icon, Typo } from '../atoms';
 import { Chevron } from '../atoms/Icon';
-import { Colors } from '../../styles/colors';
+import { Colors } from '../../constants/Colors';
 
 const ProfileList = ({ action = () => {}, title, red = false, arrow = true, ...props }) => {
   const defaultTitle = 'profile list';
@@ -12,7 +12,7 @@ const ProfileList = ({ action = () => {}, title, red = false, arrow = true, ...p
         text={title ? title : defaultTitle}
         color={red && redColor}
       />
-      {arrow && <Chevron color={Colors.primaryLight} />}
+      {arrow && <Chevron color={Colors.light.primaryLight} />}
     </Container.SectionList>
   );
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Typo, Button } from '../../atoms';
 import { LabeledInput } from '../../molecules';
 import PasswordStrengthMeter from '../../../components/PasswordStrengthMeter';
-import { Colors } from '../../../styles/colors';
+import { Colors } from '../../../constants/Colors';
 
 const RegisterForm = ({
   email,
@@ -28,7 +28,7 @@ const RegisterForm = ({
         paddingVertical={'10px'}
       >
         {error ? (
-          <Typo.OwnersText color={Colors.dimmedLight} text={error} />
+          <Typo.OwnersText color={Colors.light.dimmedLight} text={error} />
         ) : null}
         <LabeledInput
           label={'Email'}
@@ -71,7 +71,7 @@ const RegisterForm = ({
                     onPress={handlePressURL}
                   />
                   <Typo.OwnersText
-                    color={Colors.yellow}
+                    color={Colors.light.yellow}
                     fontSize={'14px'}
                     text={'*'}
                   />

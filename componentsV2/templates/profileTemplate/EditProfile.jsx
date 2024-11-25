@@ -4,7 +4,7 @@ import { Modal, View, TouchableWithoutFeedback } from 'react-native';
 import Button from '../../../components/Button';
 import ChevronButton from '../../../components/ChevronButton';
 import BirthdatePicker from '../../../components/BirthdatePicker';
-import { Colors } from '../../../styles/colors';
+import { Colors } from '../../../constants/Colors';
 import { modalStyle } from '../../../styles/modal';
 import { EditProfileForm } from '../../organismes';
 import { ScrollContainer } from '../../atoms/Container';
@@ -47,14 +47,14 @@ const EditProfile = ({
                   <Button
                     text="appliquer"
                     onPress={applySelectedDate}
-                    backgroundColor={Colors.primaryDark}
+                    backgroundColor={Colors.light.primaryDark}
                   />
                   <ChevronButton
                     text="annuler"
                     onPress={hideDatePicker}
                     chevronLeft={true}
-                    textStyle={{ color: Colors.primaryDark }}
-                    chevronColor={Colors.primaryDark}
+                    textStyle={{ color: Colors.light.primaryDark }}
+                    chevronColor={Colors.light.primaryDark}
                   />
                 </View>
               </View>

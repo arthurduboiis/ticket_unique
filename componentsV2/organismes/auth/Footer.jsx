@@ -4,7 +4,7 @@ import { SecondaryButton } from '../../molecules';
 import FacebookLoginIcon from '../../../../assets/facebook_login.svg';
 import AppleButtonImage from '../../../../assets/apple_login.svg';
 import GoogleLoginIcon from '../../../../assets/google_login.svg';
-import { Colors } from '../../../styles/colors';
+import { Colors } from '../../../constants/Colors';
 import { appleAuth } from '@invertase/react-native-apple-authentication';
 
 
@@ -40,7 +40,7 @@ const Footer = ({
         )}
 
         {loginWithGoogle && (
-          <Button.Provider loginWithProvider={loginWithGoogle} bgColor={Colors.primaryLight}>
+          <Button.Provider loginWithProvider={loginWithGoogle} bgColor={Colors.light.primaryLight}>
             <GoogleLoginIcon />
           </Button.Provider>
         )}

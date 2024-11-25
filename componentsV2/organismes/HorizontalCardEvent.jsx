@@ -5,7 +5,7 @@ import { Colors } from '../../styles/colors'
 
 const HorizontalCardEvent = ({ eventImage, artist, place, numberOfTickets = 0, eventDate, action = () => { }, ...props }) => {
   return (
-    <Container.ButtonContainer flexDirection={'row'} gap={'20px'} justifyContent={'flex-start'} paddingHorizontal={'10px'} paddingVertical={'10px'} bgColor={Colors.secondaryDark} borderRadius={5.00} width={'100%'} position={"relative"} onPress={action} {...props}>
+    <Container.ButtonContainer flexDirection={'row'} gap={'20px'} justifyContent={'flex-start'} paddingHorizontal={'10px'} paddingVertical={'10px'} bgColor={Colors.light.secondaryDark} borderRadius={5.00} width={'100%'} position={"relative"} onPress={action} {...props}>
       <Display smallSquare eventDate={eventDate} eventImage={eventImage} canFav={false} />
       <DisplayDescription name={artist} place={place} paddingVertical={'10px'} />
       {numberOfTickets > 0 && (

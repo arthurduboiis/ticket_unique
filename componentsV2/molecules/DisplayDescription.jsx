@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Typo } from '../atoms';
-import { Colors } from '../../styles/colors';
+import { Colors } from '../../constants/Colors';
 
 const DisplayDescription = ({ name, place, ...props }) => {
   const defaultName = 'Default Name';
@@ -11,7 +11,7 @@ const DisplayDescription = ({ name, place, ...props }) => {
       <Typo.OwnersText
         text={place ? place : defaultPlace}
         fontSize={'14px'}
-        color={Colors.dimmedLight}
+        color={Colors.light.dimmedLight}
       />
     </Container.DisplayContainer>
   );

@@ -6,9 +6,9 @@ import { Colors } from '../../../styles/colors'
 const StyledCheckbox = styled.View`
   width: 14px;
   height: 14px;
-  border: 1px solid ${Colors.primaryLight};
+  border: 1px solid ${Colors.light.primaryLight};
   border-radius: 2px;
-  background-color: ${props => props.checked ? Colors.primaryLight : Colors.transparent};
+  background-color: ${props => props.checked ? Colors.light.primaryLight : Colors.light.transparent};
 `
 
 
@@ -22,10 +22,10 @@ const CheckboxContainer = ({action = () => {}, title, checked = false ,...props}
       justifyContent={'flex-start'}
       alignItems={'flex-start'}
       onPress={action}
-      bgColor={Colors.transparent}
+      bgColor={Colors.light.transparent}
     >
       <StyledCheckbox checked={checked} />
-      <Native.StyledOwnersText fontSize={'14px'} color={Colors.primaryLight}>{title ? title : defaultText}</Native.StyledOwnersText>
+      <Native.StyledOwnersText fontSize={'14px'} color={Colors.light.primaryLight}>{title ? title : defaultText}</Native.StyledOwnersText>
     </Native.StyledButton>
   )
 }

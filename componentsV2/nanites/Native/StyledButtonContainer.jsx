@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 const StyledButtonContainer = styled.Pressable`
   padding-horizontal: ${(props) => props.paddingHorizontal ? props.paddingHorizontal : props.theme.container.padding.horizontal};
   padding-vertical: ${(props) => props.paddingVertical ? props.paddingVertical : props.theme.container.padding.vertical};
-  background-color: ${(props) => props.bgColor ? props.bgColor : props.theme.container.colors.transparent};
+  background-color: ${(props) => props.bgColor ? props.bgColor : props.theme.container.Colors.light.transparent};
   ${(props) => props.marginBottom ? "margin-bottom:" +props.marginBottom + ";": ""};
   ${(props) => props.height ? "height:" +props.height + ";": ""};
   ${(props) => props.width ? "width:" +props.width + ";": ""};

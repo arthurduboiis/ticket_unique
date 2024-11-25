@@ -3,15 +3,11 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
   TouchableOpacity,
   Modal,
-  Alert,
 } from 'react-native';
-import { Colors } from '../styles/colors';
+import { Colors } from '../constants/Colors';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import useTicketStore from '../services/TicketStore';
-import { sellTickets } from '../DAL/DAO_tickets';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Resell from '../../assets/resell.svg';
 import Arrow from '../../assets/arrow.svg';
@@ -21,11 +17,10 @@ const CustomHeader = () => {
   const route = useRoute();
   const insets = useSafeAreaInsets();
   const [menuVisible, setMenuVisible] = useState(false);
-  const { selectedCounts, eventId } = useTicketStore();
 
   const styles = StyleSheet.create({
     headerWithGoBack: {
-      backgroundColor: Colors.primaryDark,
+      backgroundColor: Colors.light.primaryDark,
       paddingTop: insets.top,
       width: '100%',
       minHeight: 50,
@@ -35,7 +30,7 @@ const CustomHeader = () => {
       paddingHorizontal: 10,
     },
     header: {
-      backgroundColor: Colors.primaryDark,
+      backgroundColor: Colors.light.primaryDark,
       paddingTop: insets.top,
       width: '100%',
       minHeight: 50,
@@ -59,7 +54,7 @@ const CustomHeader = () => {
     menuContainer: {
       position: 'absolute',
       right: 10,
-      backgroundColor: Colors.primaryDark,
+      backgroundColor: Colors.light.primaryDark,
       padding: 10,
       gap: 10,
     },
@@ -69,7 +64,7 @@ const CustomHeader = () => {
     },
     menuText: {
       fontSize: 18,
-      color: Colors.primaryLight,
+      color: Colors.light.primaryLight,
     },
     closeButton: {
       marginTop: 10,
@@ -77,7 +72,7 @@ const CustomHeader = () => {
     },
     closeButtonText: {
       fontSize: 16,
-      color: Colors.primaryLight,
+      color: Colors.light.primaryLight,
       fontFamily: 'Owners-Medium',
     },
     modalBackground: {
@@ -89,48 +84,13 @@ const CustomHeader = () => {
     },
   });
 
-  const confirmSellTickets = () => {
-    Alert.alert(
-      'Confirmation',
-      'Es-tu sûr de vouloir revendre les tickets sélectionnés ?',
-      [
-        {
-          text: 'Annuler',
-          style: 'cancel',
-        },
-        {
-          text: 'Confirmer',
-          onPress: () =>
-            sellTickets(eventId, selectedCounts, setMenuVisible, navigation),
-        },
-      ],
-      { cancelable: false }
-    );
-  };
+  
 
-  const openMenu = () => {
-    if (Object.keys(selectedCounts).length > 0) {
-      setMenuVisible(true);
-    } else {
-      Alert.alert("Aucun ticket n'a été sélectionné");
-    }
-  };
 
   const closeMenu = () => {
     setMenuVisible(false);
   };
 
-  const handleMenuOption = (option) => {
-    console.log('Selected option:', option);
-    if (option === 'Revendre') {
-      confirmSellTickets();
-    } else if (option === 'Transférer') {
-      setMenuVisible(false);
-      navigation.navigate('TicketTransfer', { event: route.params.event });
-    } else if (option === 'Imprimer Ticket(s)') {
-      // Insérer la logique pour imprimer les tickets | Q : je pense qu'on peut supprimer ça
-    }
-  };
   if (navigation && navigation.canGoBack()) {
     return (
       <View>

@@ -3,7 +3,7 @@ import { Container, Typo } from '../atoms';
 import { CardEvent, SearchBar } from '../organismes';
 import ModalMessage from '../../components/ModalSearch';
 import { RefreshControl } from 'react-native';
-import { Colors } from '../../styles/colors';
+import { Colors } from '../../constants/Colors';
 
 const Home = ({
   searchPhrase,
@@ -45,7 +45,7 @@ const Home = ({
           <RefreshControl
             refreshing={refreshing}
             onRefresh={handleRefresh}
-            tintColor={Colors.primaryLight}
+            tintColor={Colors.light.primaryLight}
           />
         }
       >

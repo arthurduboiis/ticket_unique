@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Container, Typo } from '../../atoms';
 import { LabeledInput, SecondaryButton } from '../../molecules';
-import { Colors } from '../../../styles/colors';
+import { Colors } from '../../../constants/Colors';
 
 const LoginForm = ({
   email,
@@ -22,7 +22,7 @@ const LoginForm = ({
           paddingVertical={'10px'}
         >
           {error ? (
-            <Typo.OwnersText color={Colors.dimmedLight} text={error}/>
+            <Typo.OwnersText color={Colors.light.dimmedLight} text={error}/>
               
           ) : null}
           <LabeledInput

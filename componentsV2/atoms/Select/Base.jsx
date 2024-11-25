@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { globalStyles as global } from '../../../styles/global';
 import { Dropdown } from 'react-native-element-dropdown';
-import { Colors } from '../../../styles/colors';
+import { Colors } from '../../../constants/Colors';
 
 const Base = ({
   items,
@@ -29,13 +29,13 @@ const Base = ({
         maxHeight={300}
         containerStyle={style.containerStyle}
         itemTextStyle={style.itemTextStyle}
-        activeColor={Colors.dimmedLight}
+        activeColor={Colors.light.dimmedLight}
         style={[
           globalStyles.input,
           style.input,
           styles,
           {
-            borderColor: isFocused ? Colors.yellow : Colors.secondaryDark,
+            borderColor: isFocused ? Colors.light.yellow : Colors.light.secondaryDark,
             borderWidth: isFocused ? 1 : 1,
           },
         ]}
@@ -51,15 +51,15 @@ const style = StyleSheet.create({
     height: 46.5,
   },
   placeholderStyle: {
-    color: Colors.dimmedLight,
+    color: Colors.light.dimmedLight,
   },
   textInput: {
     fontFamily: 'Owners-Medium',
-    color: Colors.primaryLight,
+    color: Colors.light.primaryLight,
   },
   containerStyle: {
     width: '100%',
-    backgroundColor: Colors.secondaryDark,
+    backgroundColor: Colors.light.secondaryDark,
     borderWidth: 0,
     borderRadius: 5,
     paddingHorizontal: 10,
@@ -70,6 +70,6 @@ const style = StyleSheet.create({
   itemTextStyle: {
     fontFamily: 'Owners',
     fontSize: 15,
-    color: Colors.primaryLight,
+    color: Colors.light.primaryLight,
   },
 });
