@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View } from "react-native";
+import { useEffect } from "react";
+import { Platform } from "react-native";
 import { ThemeProvider } from "styled-components/native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import useAuthStore from "../store/authStore";
@@ -6,7 +7,15 @@ import MainLayout from "../navigation/MainLayout";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CustomHeader from "../navigation/CustomHeader";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { LoginPage, PasswordForgottenPage, SignupPage } from '../componentsV2/pages/auth';
+import * as NavigationBar from "expo-navigation-bar";
+import { AppState } from "react-native";
+
+import {
+  LoginPage,
+  PasswordForgottenPage,
+  SignupPage,
+} from "../componentsV2/pages/auth";
+import { NavigationContainer } from "@react-navigation/native";
 
 const Stack = createNativeStackNavigator();
 
@@ -14,7 +23,7 @@ const theme = {
   container: {
     colors: {
       transparent: "rgba(0, 0, 0, 0)",
-      yellow: "#FFFF66",
+      yellow: "#99CCFF",
       primaryDark: "#030303",
       primaryLight: "#FFFFFF",
       secondaryLight: "#F2F2F2",
@@ -41,40 +50,66 @@ const theme = {
 
 export default function Page() {
   const { user } = useAuthStore();
-  if (!user) {
-    return (
-      <GestureHandlerRootView>
-        <ThemeProvider theme={theme}>
-          <SafeAreaProvider>
-              <AuthStackNavigator />
-          </SafeAreaProvider>
-        </ThemeProvider>
-      </GestureHandlerRootView>
-    );
-  } else {
-    return (
-      <GestureHandlerRootView>
-        <ThemeProvider theme={theme}>
-          <SafeAreaProvider>
-              <MainStackNavigator />
-          </SafeAreaProvider>
-        </ThemeProvider>
-      </GestureHandlerRootView>
-    );
-  }
+
+  const hideNavBar = async () => {
+    // Prevent content from moving up when bar is shown
+    await NavigationBar.setPositionAsync("absolute");
+
+    // Hide bottom bar
+    await NavigationBar.setVisibilityAsync("hidden");
+
+    // Show the bar when user swipes
+    await NavigationBar.setBehaviorAsync("overlay-swipe");
+  };
+
+  useEffect(() => {
+    if (Platform.OS === "android") {
+      const handleAppStateChange = (nextAppState) => {
+        // If app is being used, hide nav bar
+        if (nextAppState === "active") {
+          hideNavBar();
+        }
+      };
+
+      // Subscribe to app state changes
+      const appStateSubscription = AppState.addEventListener(
+        "change",
+        handleAppStateChange
+      );
+
+      // Clean up the event listener when the component unmounts
+      return () => {
+        appStateSubscription.remove();
+      };
+    }
+  }, []);
+  return (
+    <GestureHandlerRootView>
+      <ThemeProvider theme={theme}>
+        <SafeAreaProvider>
+          <NavigationContainer independent={true}>
+            {user ? <MainStackNavigator /> : <AuthStackNavigator />}
+          </NavigationContainer>
+        </SafeAreaProvider>
+      </ThemeProvider>
+    </GestureHandlerRootView>
+  );
 }
 
 const AuthStackNavigator = () => (
   <Stack.Navigator
-    screenOptions={{ header: (props) => <CustomHeader {...props} /> }}
+    screenOptions={{
+      header: (props) => <CustomHeader {...props} />,
+      contentStyle: { backgroundColor: "#030303" },
+    }}
   >
     <Stack.Screen
       name="Login"
       component={LoginPage}
       options={{
         headerShown: false,
-        animationTypeForReplace: 'push',
-        animation: 'slide_from_right',
+        animationTypeForReplace: "push",
+        animation: "slide_from_right",
       }}
     />
     <Stack.Screen
@@ -82,8 +117,8 @@ const AuthStackNavigator = () => (
       component={SignupPage}
       options={{
         headerShown: false,
-        animationTypeForReplace: 'push',
-        animation: 'slide_from_right',
+        animationTypeForReplace: "push",
+        animation: "slide_from_right",
       }}
     />
     <Stack.Screen name="ForgotPassword" component={PasswordForgottenPage} />

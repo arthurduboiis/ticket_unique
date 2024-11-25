@@ -5,7 +5,10 @@ const PasswordForgottenPage = () => {
   const [email, setEmail] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
 
- 
+ const sendEmail = () => {
+    console.log('Send email');
+  }
+  
   return (
     <AuthTemplate.PasswordForgotten
       email={email}

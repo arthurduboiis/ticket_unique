@@ -9,7 +9,7 @@ const tintColorDark = "#fff";
 export const Colors = {
   light: {
     transparent: "rgba(0, 0, 0, 0)",
-    yellow: "#FFFF66",
+    yellow: "#99CCFF",
     primaryDark: "#030303",
     primaryLight: "#FFFFFF",
     secondaryLight: "#F2F2F2",
@@ -25,7 +25,7 @@ export const Colors = {
   },
   dark: {
     transparent: "rgba(0, 0, 0, 0)",
-    yellow: "#FFFF66",
+    yellow: "#99CCFF",
     primaryDark: "#030303",
     primaryLight: "#FFFFFF",
     secondaryLight: "#F2F2F2",

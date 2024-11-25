@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { Colors } from '../../../constants/Colors';
 
-const StyledPicker = styled.TouchableOpacity`
+const StyledPicker = styled.Pressable`
   backgroundColor: ${Colors.light.secondaryDark};
   padding-horizontal: 20px;
   padding-vertical: 10px;

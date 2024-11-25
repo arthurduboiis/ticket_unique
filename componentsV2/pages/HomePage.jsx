@@ -95,6 +95,25 @@ const HomePage = ({ navigation }) => {
   //   }
   //   await updateFavEvents(auth.currentUser.uid, favUserEvents);
   // };
+
+  const handleRefresh = () => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  };
+
+  const handleEventPress = (event) => {
+    console.log(event);
+  }
+
+  const toggleLike = (eventId) => {
+    console.log(eventId);
+  }
+
+  
+
+
   return (
     <Home
       activeFilters={activeFilters}

@@ -7,7 +7,7 @@ import { Colors } from '../../../constants/Colors';
 import { EditProfileForm } from '../../organismes';
 import { ScrollContainer } from '../../atoms/Container';
 // import ModalMessage from '../../../components/ModalMessage';
-import { SecondaryButton } from '@/componentsV2/molecules';
+import { SecondaryButton } from '../../molecules';
 
 const EditProfile = ({
   isDatePickerVisible,

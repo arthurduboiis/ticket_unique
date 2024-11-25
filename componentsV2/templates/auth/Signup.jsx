@@ -31,7 +31,7 @@ const Signup = ({
         paddingHorizontal={'30px'}
         paddingVertical={'80px'}
       >
-        <ConnectionHeader title={'Crée ton compte'} />
+        <ConnectionHeader title='Crée ton compte' />
         <AuthOrganism.RegisterForm
           email={email}
           setEmail={setEmail}

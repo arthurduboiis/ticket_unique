@@ -37,6 +37,9 @@ const SignupPage = () => {
     setNewsletter(!newsletter);
   }
 
+  const handleRegisterClassic = () => {
+    console.log('Register classic')
+  }
 
   return (
     <AuthTemplate.Signup
@@ -54,9 +57,6 @@ const SignupPage = () => {
       toggleNewsletter={toggleCheckNewsletter}
       handlePressURL={handlePressURL}
       goToLogin={goToLogin}
-      loginWithFb={handleLoginFacebook}
-      loginWithGoogle={handleLoginGoogle}
-      loginWithApple={handleAppleSignIn}
     />
   );
 };

@@ -87,6 +87,12 @@ const ProfilePage = () => {
   //   }
   // };
 
+  const handleImagePicker = () => {
+    console.log("image picker")
+  }
+
+  
+
   const menu = [
     {
       title: 'Profil',

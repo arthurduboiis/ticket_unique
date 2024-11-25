@@ -3,7 +3,7 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
+  Pressable,
   Modal,
 } from 'react-native';
 import { Colors } from '../constants/Colors';
@@ -17,7 +17,6 @@ const CustomHeader = () => {
   const route = useRoute();
   const insets = useSafeAreaInsets();
   const [menuVisible, setMenuVisible] = useState(false);
-
   const styles = StyleSheet.create({
     headerWithGoBack: {
       backgroundColor: Colors.light.primaryDark,
@@ -96,51 +95,51 @@ const CustomHeader = () => {
       <View>
         <View style={styles.headerWithGoBack}>
           {route.name !== 'TicketTransferSuccess' ? (
-            <TouchableOpacity
+            <Pressable
               onPress={() => navigation.goBack()}
               style={styles.arrow}
             >
               <Arrow />
-            </TouchableOpacity>
+            </Pressable>
           ) : (
             <View style={styles.box} />
           )}
           <View style={styles.logoContainer}></View>
           {route.name === 'EventBought' ? (
             <View style={styles.box}>
-              <TouchableOpacity onPress={() => setMenuVisible(true)}>
+              <Pressable onPress={() => setMenuVisible(true)}>
                 <Resell />
-              </TouchableOpacity>
+              </Pressable>
             </View>
           ) : (
             <View style={styles.box} />
           )}
         </View>
         <Modal visible={menuVisible} animationType="fade" transparent={true}>
-          <TouchableOpacity
+          <Pressable
             style={styles.modalBackground}
             activeOpacity={1}
             onPressOut={closeMenu}
           >
             <View style={styles.menuContainer}>
-              <TouchableOpacity
+              <Pressable
                 style={styles.menuOption}
                 onPress={() => handleMenuOption('Revendre')}
               >
                 <Text style={styles.menuText}>Revendre</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
+              </Pressable>
+              <Pressable
                 style={styles.menuOption}
                 onPress={() => handleMenuOption('Transférer')}
               >
                 <Text style={styles.menuText}>Transférer</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
+              </Pressable>
+              <Pressable
                 style={styles.closeButton}
                 onPress={closeMenu}
-              ></TouchableOpacity>
+              ></Pressable>
             </View>
-          </TouchableOpacity>
+          </Pressable>
         </Modal>
       </View>
     );

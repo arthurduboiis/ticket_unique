@@ -14,7 +14,7 @@ const PasswordForgotten = ({ email, setEmail, modalVisible, setModalVisible, onS
         paddingHorizontal={'30px'}
         paddingVertical={'80px'}
       >
-        <ConnectionHeader title={'Mot de passe oublié ?'} />
+        <ConnectionHeader title='Mot de passe oublié ?' />
         {/* <ModalMessage
           message="Consulte ta boîte mail !"
           modalVisible={modalVisible}

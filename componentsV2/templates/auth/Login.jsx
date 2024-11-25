@@ -5,9 +5,6 @@ import { ConnectionHeader } from '../../molecules';
 
 const Login = ({
   goToRegister,
-  loginWithFb,
-  loginWithGoogle,
-  loginWithApple,
   email,
   setEmail,
   password,
@@ -28,7 +25,7 @@ const Login = ({
         paddingHorizontal={'30px'}
         paddingVertical={'80px'}
       >
-        <ConnectionHeader title={'Connexion'} />
+        <ConnectionHeader title='Connexion' />
         <AuthOrganism.LoginForm
           email={email}
           setEmail={setEmail}
@@ -42,9 +39,6 @@ const Login = ({
         <AuthOrganism.Footer
           textGoTo={'Pas encore de compte ? Inscris toi !'}
           goToPage={goToRegister}
-          loginWithFb={loginWithFb}
-          loginWithGoogle={loginWithGoogle}
-          loginWithApple={loginWithApple}
         />
       </Container.ColContainer>
     </Container.KeyboardAvoidingLayout>

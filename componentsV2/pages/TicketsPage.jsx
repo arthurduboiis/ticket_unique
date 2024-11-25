@@ -31,6 +31,13 @@ const TicketsPage = ({ navigation }) => {
   //     });
   // }
 
+  const handleRefresh = () => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }
+  
   const handleTicketPress = (ticket) => {
     navigation.navigate('TicketDetails', { ticket });
   };
