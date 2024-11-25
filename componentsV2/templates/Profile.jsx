@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from '../atoms';
 import ProfilHeader from '../molecules/ProfilHeader';
 import { ProfileList } from '../molecules';
-import ModalLogout from '../../components/ModalLogout';
+// import ModalLogout from '../../components/ModalLogout';
 
 const Profile = ({
   firstname,
@@ -16,10 +16,10 @@ const Profile = ({
 }) => {
   return (
     <Container.PageContainer gap={'20px'}>
-      <ModalLogout
+      {/* <ModalLogout
         closeModal={() => setLogoutModalVisible(false)}
         modalVisible={logoutModalVisible}
-      />
+      /> */}
       <ProfilHeader
         firstname={firstname}
         followersNumber={followersNumber}

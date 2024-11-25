@@ -1,14 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { AuthTemplate } from '../../templates';
 import { useNavigation } from '@react-navigation/core';
-import { IOS_CLIENT_ID, ANDROID_CLIENT_ID } from '@env';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import {
-  handleRegister,
-  handleLoginGoogle,
-  handleLoginFacebook,
-  handleAppleSignIn,
-} from '../../../services/AuthService';
 import { Alert, Linking } from 'react-native';
 
 const SignupPage = () => {
@@ -20,49 +12,6 @@ const SignupPage = () => {
   const [checkCGU, setCheckCGU] = useState(false);
   const [newsletter, setNewsletter] = useState(false);
 
-  GoogleSignin.configure({
-    webClientId: process.env.ANDROID_CLIENT_ID || ANDROID_CLIENT_ID,
-    iosClientId: process.env.IOS_CLIENT_ID || IOS_CLIENT_ID,
-  });
-
-  const validatePassword = (password) => {
-    const regex =
-      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*._-]).{8,}$/;
-    return regex.test(password);
-  };
-
-  const handleRegisterClassic = async () => {
-    if (!validatePassword(password)) {
-      setError(
-        'Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.'
-      );
-      return;
-    }
-    if (password !== passwordConfirm) {
-      setError('Les mots de passe ne correspondent pas');
-      return;
-    }
-    if (!toggleCheckCGU) {
-      setError(
-        "Tu dois accepter les conditions générales d'utilisation et de vente."
-      );
-      return;
-    }
-    try {
-      await handleRegister(email, password, toggleCheckNewsletter);
-      setError('');
-    } catch (err) {
-      if (err.code === 'auth/invalid-email') {
-        setError('Email invalide.');
-      } else if (err.code === 'auth/email-already-in-use') {
-        setError('Email déjà utilisé.');
-      } else if (err.code === 'auth/weak-password') {
-        setError('Mot de passe trop faible.');
-      } else {
-        setError('Une erreur est survenue. Réessaie.');
-      }
-    }
-  };
 
   const goToLogin = () => {
     navigation.navigate('Login');

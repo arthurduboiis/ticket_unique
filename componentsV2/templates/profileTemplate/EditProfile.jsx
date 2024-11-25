@@ -1,14 +1,13 @@
 import React from 'react';
-import { Container, Typo } from '../../atoms';
+import { Button, Container, Typo } from '../../atoms';
 import { Modal, View, TouchableWithoutFeedback } from 'react-native';
-import Button from '../../../components/Button';
-import ChevronButton from '../../../components/ChevronButton';
-import BirthdatePicker from '../../../components/BirthdatePicker';
+// import BirthdatePicker from '../../../components/BirthdatePicker';
 import { Colors } from '../../../constants/Colors';
-import { modalStyle } from '../../../styles/modal';
+// import { modalStyle } from '../../../styles/modal';
 import { EditProfileForm } from '../../organismes';
 import { ScrollContainer } from '../../atoms/Container';
-import ModalMessage from '../../../components/ModalMessage';
+// import ModalMessage from '../../../components/ModalMessage';
+import { SecondaryButton } from '@/componentsV2/molecules';
 
 const EditProfile = ({
   isDatePickerVisible,
@@ -29,7 +28,7 @@ const EditProfile = ({
 }) => {
   return (
     <Container.PageContainer canBack gap={'20px'}>
-      <Modal
+      {/* <Modal
         animationType="slide"
         transparent={true}
         visible={isDatePickerVisible}
@@ -44,12 +43,12 @@ const EditProfile = ({
                   onDateChange={(date) => setSelectedDate(date)}
                 />
                 <View style={[modalStyle.buttonContainer]}>
-                  <Button
+                  <Button.Base
                     text="appliquer"
                     onPress={applySelectedDate}
                     backgroundColor={Colors.light.primaryDark}
                   />
-                  <ChevronButton
+                  <SecondaryButton
                     text="annuler"
                     onPress={hideDatePicker}
                     chevronLeft={true}
@@ -66,7 +65,7 @@ const EditProfile = ({
             modalVisible={modal}
             message={message}
             setModalVisible={setModal}
-          />
+          /> */}
       <ScrollContainer>
         <Container.ColContainer gap={'20px'}>
           <Typo.Gotham text={'Modifier mes infos'} uppercase />

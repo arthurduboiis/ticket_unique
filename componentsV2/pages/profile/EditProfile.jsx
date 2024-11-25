@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ProfileTemplate } from '../../templates';
 import { useNavigation } from '@react-navigation/core';
-import { FIREBASE_FUNCTIONS_URL } from '@env';
-import { auth, db } from '../../../../firebase';
-import { doc, onSnapshot, setDoc } from '@react-native-firebase/firestore';
+
 import { Alert } from 'react-native';
 
 const EditProfile = () => {
@@ -79,84 +77,84 @@ const EditProfile = () => {
     setHasUnsavedChanges(true); // Marque les changements comme non sauvegardés
   };
 
-  useEffect(() => {
-    const userDoc = doc(db, 'users', auth.currentUser.uid);
-    const unsubscribe = onSnapshot(userDoc, (snapshot) => {
-      const data = snapshot.data();
-      if (data?.birthday && data.birthday !== NaN) {
-        data.birthday = new Date(data.birthday);
-      }
-      if (data?.brevoContactId) {
-        setBrevoContactId(data.brevoContactId);
-      }
+  // useEffect(() => {
+  //   const userDoc = doc(db, 'users', auth.currentUser.uid);
+  //   const unsubscribe = onSnapshot(userDoc, (snapshot) => {
+  //     const data = snapshot.data();
+  //     if (data?.birthday && data.birthday !== NaN) {
+  //       data.birthday = new Date(data.birthday);
+  //     }
+  //     if (data?.brevoContactId) {
+  //       setBrevoContactId(data.brevoContactId);
+  //     }
 
-      setMetadata(data);
-    });
+  //     setMetadata(data);
+  //   });
 
-    return () => unsubscribe();
-  }, []);
+  //   return () => unsubscribe();
+  // }, []);
 
-  const updateProfile = async () => {
-    metadata.email = auth?.currentUser?.email;
-    if (metadata.email === '' || metadata.phone === '') {
-      setModal(true);
-      setMessage('Les champs email et téléphone sont obligatoires');
-      return;
-    }
+  // const updateProfile = async () => {
+  //   metadata.email = auth?.currentUser?.email;
+  //   if (metadata.email === '' || metadata.phone === '') {
+  //     setModal(true);
+  //     setMessage('Les champs email et téléphone sont obligatoires');
+  //     return;
+  //   }
 
-    const emailRegex = /\S+@\S+\.\S+/;
-    if (!emailRegex.test(metadata.email)) {
-      setModal(true);
-      setMessage("L'email n'est pas valide");
-      return;
-    }
+  //   const emailRegex = /\S+@\S+\.\S+/;
+  //   if (!emailRegex.test(metadata.email)) {
+  //     setModal(true);
+  //     setMessage("L'email n'est pas valide");
+  //     return;
+  //   }
 
-    const phoneRegex = /^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/;
-    if (!phoneRegex.test(metadata.phone)) {
-      setModal(true);
-      setMessage("Le numéro de téléphone n'est pas valide");
-      return;
-    }
+  //   const phoneRegex = /^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/;
+  //   if (!phoneRegex.test(metadata.phone)) {
+  //     setModal(true);
+  //     setMessage("Le numéro de téléphone n'est pas valide");
+  //     return;
+  //   }
 
-    metadata.email = metadata.email.toLowerCase();
-    metadata.birthday = new Date(metadata.birthday).getTime();
-    try {
-      const userDoc = doc(db, 'users', auth.currentUser.uid);
-      await setDoc(userDoc, { ...metadata }, { merge: true });
-      setHasUnsavedChanges(false);
-      setModal(true);
-      setMessage('Informations mises à jour');
+  //   metadata.email = metadata.email.toLowerCase();
+  //   metadata.birthday = new Date(metadata.birthday).getTime();
+  //   try {
+  //     const userDoc = doc(db, 'users', auth.currentUser.uid);
+  //     await setDoc(userDoc, { ...metadata }, { merge: true });
+  //     setHasUnsavedChanges(false);
+  //     setModal(true);
+  //     setMessage('Informations mises à jour');
   
-      if (brevoContactId && metadata.lastname && metadata.firstname) {
-        const firebaseFunctionUrl =
-          FIREBASE_FUNCTIONS_URL || process.env.FIREBASE_FUNCTIONS_URL;
-        const JWT = await auth.currentUser.getIdToken();
-        try {
-          await fetch(firebaseFunctionUrl + '/addAttributesToBrevoContact', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + JWT,
-            },
-            body: JSON.stringify({
-              brevoContactId: brevoContactId,
-              attributes: {
-                email: metadata.email,
-                lastname: metadata.lastname,
-                firstname: metadata.firstname,
-                phone: metadata.phone,
-              },
-            }),
-          });
-        } catch (error) {
-          console.log('Error: ', error);
-        }
-      }
-    } catch (error) {
-      console.log('Error: ', error);
-    }
+  //     if (brevoContactId && metadata.lastname && metadata.firstname) {
+  //       const firebaseFunctionUrl =
+  //         FIREBASE_FUNCTIONS_URL || process.env.FIREBASE_FUNCTIONS_URL;
+  //       const JWT = await auth.currentUser.getIdToken();
+  //       try {
+  //         await fetch(firebaseFunctionUrl + '/addAttributesToBrevoContact', {
+  //           method: 'POST',
+  //           headers: {
+  //             'Content-Type': 'application/json',
+  //             Authorization: 'Bearer ' + JWT,
+  //           },
+  //           body: JSON.stringify({
+  //             brevoContactId: brevoContactId,
+  //             attributes: {
+  //               email: metadata.email,
+  //               lastname: metadata.lastname,
+  //               firstname: metadata.firstname,
+  //               phone: metadata.phone,
+  //             },
+  //           }),
+  //         });
+  //       } catch (error) {
+  //         console.log('Error: ', error);
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.log('Error: ', error);
+  //   }
     
-  };
+  // };
 
   const showDatePicker = () => {
     if (!metadata.birthday && metadata.birthday !== NaN) {

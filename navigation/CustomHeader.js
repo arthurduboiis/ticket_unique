@@ -9,8 +9,8 @@ import {
 import { Colors } from '../constants/Colors';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Resell from '../../assets/resell.svg';
-import Arrow from '../../assets/arrow.svg';
+import Resell from '../assets/resell.svg';
+import Arrow from '../assets/arrow.svg';
 
 const CustomHeader = () => {
   const navigation = useNavigation();

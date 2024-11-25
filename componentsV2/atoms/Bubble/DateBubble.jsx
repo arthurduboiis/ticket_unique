@@ -1,6 +1,6 @@
 import React from 'react'
 import { Native } from '../../nanites'
-import { Colors } from '../../../styles/colors'
+import { Colors } from '../../../constants/Colors'
 
 const DateBubble = ({date, ...props}) => {
   const defaultDate = "DD-MM-YY";

@@ -1,15 +1,15 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import EditPreference from '../screens/singles/EditPreferences';
-import ChangePassword from '../screens/singles/ChangePassword';
-import EditInterests from '../screens/singles/EditInterests';
-import OldEvent from '../screens/singles/OldEvent';
-import MyWallet from '../screens/singles/MyWallet';
-import MyTransactions from '../screens/singles/MyTransactions';
-import ProfileScreen from '../screens/loggedStack/ProfileScreen';
-import Settings from '../screens/singles/Settings';
-import OldEventDetails from '../screens/singles/OldEventDetails';
-import Transaction from '../screens/singles/Transaction';
-import FavEvent from '../screens/singles/FavEvent';
+// import EditPreference from '../screens/singles/EditPreferences';
+// import ChangePassword from '../screens/singles/ChangePassword';
+// import EditInterests from '../screens/singles/EditInterests';
+// import OldEvent from '../screens/singles/OldEvent';
+// import MyWallet from '../screens/singles/MyWallet';
+// import MyTransactions from '../screens/singles/MyTransactions';
+// import ProfileScreen from '../screens/loggedStack/ProfileScreen';
+// import Settings from '../screens/singles/Settings';
+// import OldEventDetails from '../screens/singles/OldEventDetails';
+// import Transaction from '../screens/singles/Transaction';
+// import FavEvent from '../screens/singles/FavEvent';
 
 import CustomHeader from './CustomHeader';
 import { Profile, ProfilePage } from '../componentsV2/pages';
@@ -28,7 +28,7 @@ function ProfileStackNavigator() {
         component={ProfilePage}
         options={{ headerShown: false }}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="FavEvent"
         component={FavEvent}
         options={{ headerShown: true }}
@@ -61,13 +61,13 @@ function ProfileStackNavigator() {
           animation: 'slide_from_right',
           headerShown: true,
         }}
-      />
+      /> */}
       <Stack.Screen
         name="Settings"
         component={Profile.Settings}
         options={{ headerShown: true }}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="Transaction"
         component={Transaction}
         options={{ headerShown: true }}
@@ -86,7 +86,7 @@ function ProfileStackNavigator() {
         name="OldEventDetails"
         component={OldEventDetails}
         options={{ headerShown: true }}
-      />
+      /> */}
     </Stack.Navigator>
   );
 }

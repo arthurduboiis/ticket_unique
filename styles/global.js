@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { Colors } from './colors';
+import { Colors } from '../constants/Colors';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export const globalStyles = () => {

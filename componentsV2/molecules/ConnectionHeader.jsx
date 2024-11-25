@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Typo } from '../atoms'
-import LogoUT from '../../../assets/logo/Bulle_UT_Jaune.svg';
+import LogoUT from '../../assets/logo/Bulle_UT_Jaune.svg';
 
 const ConnectionHeader = ({title}) => {
   return (

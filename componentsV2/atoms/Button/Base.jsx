@@ -1,4 +1,4 @@
-import { Colors } from "../../../styles/colors";
+import { Colors } from '../../../constants/Colors'
 import { Native } from "../../nanites";
 
 const Base = ({ title, action = () => {} , darkmode = false,...props}) => {

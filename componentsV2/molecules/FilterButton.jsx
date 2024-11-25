@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/native'
 import IconButton from './IconButton'
-import Filter from '../../../assets/filter.svg';
+import Filter from '../../assets/filter.svg';
 import { Bubble } from '../atoms';
 
 

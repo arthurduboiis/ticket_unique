@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container, Typo, Button } from '../../atoms';
 import { LabeledInput } from '../../molecules';
-import PasswordStrengthMeter from '../../../components/PasswordStrengthMeter';
 import { Colors } from '../../../constants/Colors';
 
 const RegisterForm = ({
@@ -42,7 +41,6 @@ const RegisterForm = ({
           onChangeText={setPassword}
           icon="eye"
           renderMeter={true}
-          PasswordStrengthMeter={<PasswordStrengthMeter password={password} />}
         />
         <LabeledInput
           label={'Confirmation du mot de passe'}

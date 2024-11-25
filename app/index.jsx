@@ -2,13 +2,13 @@ import { StyleSheet, Text, View } from "react-native";
 import { ThemeProvider } from "styled-components/native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import useAuthStore from "../store/authStore";
-import MainLayout from '../navigation/MainLayout';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import MainLayout from "../navigation/MainLayout";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CustomHeader from "../navigation/CustomHeader";
-
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { LoginPage, PasswordForgottenPage, SignupPage } from '../componentsV2/pages/auth';
 
 const Stack = createNativeStackNavigator();
-
 
 const theme = {
   container: {
@@ -41,24 +41,54 @@ const theme = {
 
 export default function Page() {
   const { user } = useAuthStore();
-  if(user) {
+  if (!user) {
     return (
-      <ThemeProvider theme={theme}>
-        <GestureHandlerRootView>
-          <View>
-            <Text>Welcome {user.name}</Text>
-          </View>
-        </GestureHandlerRootView>
-      </ThemeProvider>
+      <GestureHandlerRootView>
+        <ThemeProvider theme={theme}>
+          <SafeAreaProvider>
+              <AuthStackNavigator />
+          </SafeAreaProvider>
+        </ThemeProvider>
+      </GestureHandlerRootView>
+    );
+  } else {
+    return (
+      <GestureHandlerRootView>
+        <ThemeProvider theme={theme}>
+          <SafeAreaProvider>
+              <MainStackNavigator />
+          </SafeAreaProvider>
+        </ThemeProvider>
+      </GestureHandlerRootView>
     );
   }
-  else {
-    return <View><Text>test 
-      </Text></View>;
-  }
-  
-
 }
+
+const AuthStackNavigator = () => (
+  <Stack.Navigator
+    screenOptions={{ header: (props) => <CustomHeader {...props} /> }}
+  >
+    <Stack.Screen
+      name="Login"
+      component={LoginPage}
+      options={{
+        headerShown: false,
+        animationTypeForReplace: 'push',
+        animation: 'slide_from_right',
+      }}
+    />
+    <Stack.Screen
+      name="Register"
+      component={SignupPage}
+      options={{
+        headerShown: false,
+        animationTypeForReplace: 'push',
+        animation: 'slide_from_right',
+      }}
+    />
+    <Stack.Screen name="ForgotPassword" component={PasswordForgottenPage} />
+  </Stack.Navigator>
+);
 
 const MainStackNavigator = () => (
   <Stack.Navigator
@@ -69,4 +99,3 @@ const MainStackNavigator = () => (
     {/* <Stack.Screen name="Event" component={Event} /> */}
   </Stack.Navigator>
 );
-

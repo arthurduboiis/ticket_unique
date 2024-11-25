@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Typo } from '../atoms';
 import { CardEvent, SearchBar } from '../organismes';
-import ModalMessage from '../../components/ModalSearch';
+// import ModalMessage from '../../components/ModalSearch';
 import { RefreshControl } from 'react-native';
 import { Colors } from '../../constants/Colors';
 
@@ -30,10 +30,10 @@ const Home = ({
 
   return (
     <Container.PageContainer gap={'20px'}>
-      <ModalMessage
+      {/* <ModalMessage
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
-      />
+      /> */}
       <SearchBar
         activeFilters={activeFilters}
         searchPhrase={searchPhrase}

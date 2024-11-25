@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Native } from '../nanites';
 import { Icon } from '../atoms';
-import EventLikedIcon from '../../../assets/icon_event_liked.svg';
-import EventNotLikedIcon from '../../../assets/icon_event_not_liked.svg';
+import EventLikedIcon from '../../assets/icon_event_liked.svg';
+import EventNotLikedIcon from '../../assets/icon_event_not_liked.svg';
 import { Colors } from '../../constants/Colors';
 
 const LikeCheckbox = ({liked, toggleLiked = () => {}, ...props}) => {

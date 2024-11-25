@@ -1,7 +1,7 @@
 import React from 'react'
 import { Bubble, Container } from '../atoms'
 import { Display, DisplayDescription } from '../molecules'
-import { Colors } from '../../styles/colors'
+import { Colors } from '../../constants/Colors'
 
 const HorizontalCardEvent = ({ eventImage, artist, place, numberOfTickets = 0, eventDate, action = () => { }, ...props }) => {
   return (

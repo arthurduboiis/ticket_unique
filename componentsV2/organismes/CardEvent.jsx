@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Typo } from '../atoms'
 import { Display, DisplayDescription } from '../molecules'
-import { Colors } from '../../styles/colors'
+import { Colors } from '../../constants/Colors'
 
 const CardEvent = ({ eventImage, name, eventDate, place, price, liked, toggleLiked = () => { }, action = () => { }, ...props }) => {
   return (

@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { View, StyleSheet, Pressable } from 'react-native';
 import { Input, Icon } from '../atoms';
 import { Colors } from '../../constants/Colors';
-import Eye from '../../../assets/eye.svg';
-import EyeOff from '../../../assets/eye_off.svg';
+import Eye from '../../assets/eye.svg';
+import EyeOff from '../../assets/eye_off.svg';
 import { Feather } from '@expo/vector-icons';
 
 const LabeledInput = ({
@@ -12,7 +12,6 @@ const LabeledInput = ({
   onChangeText,
   mandatory = true,
   icon = null,
-  PasswordStrengthMeter,
   renderMeter = false,
   ...props
 }) => {
@@ -153,7 +152,6 @@ const LabeledInput = ({
         />
       )}
 
-      {isFocused && renderMeter && PasswordStrengthMeter}
     </View>
   );
 };

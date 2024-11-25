@@ -1,7 +1,6 @@
 import React from 'react'
 import { Native } from '../../nanites'
-import { Colors } from '../../../styles/colors'
-
+import { Colors } from '../../../constants/Colors'
 const Icon = ({action = () => {}, ...props}) => {
   return (
     <Native.StyledButton 

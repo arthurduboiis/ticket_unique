@@ -1,8 +1,7 @@
 import React from 'react'
 import { Native } from '../../nanites'
 import styled from 'styled-components/native'
-import { Colors } from '../../../styles/colors'
-
+import { Colors } from '../../../constants/Colors'
 const StyledCheckbox = styled.View`
   width: 14px;
   height: 14px;

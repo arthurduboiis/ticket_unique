@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from '../../atoms';
 import { AuthOrganism } from '../../organismes';
 import { ConnectionHeader } from '../../molecules';
-import ModalMessage from '../../../components/ModalMessage';
+// import ModalMessage from '../../../components/ModalMessage';
 
 const PasswordForgotten = ({ email, setEmail, modalVisible, setModalVisible, onSubmit }) => {
   return (
@@ -15,11 +15,11 @@ const PasswordForgotten = ({ email, setEmail, modalVisible, setModalVisible, onS
         paddingVertical={'80px'}
       >
         <ConnectionHeader title={'Mot de passe oublié ?'} />
-        <ModalMessage
+        {/* <ModalMessage
           message="Consulte ta boîte mail !"
           modalVisible={modalVisible}
           setModalVisible={setModalVisible}
-        />
+        /> */}
         <AuthOrganism.PasswordForgottenForm
           email={email}
           setEmail={setEmail}

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Native } from '../nanites'
-import { Colors } from '../../styles/colors'
+import { Colors } from '../../constants/Colors'
 import Chevron from '../atoms/Icon/Chevron'
 
 const SecondaryButton = ({title, action = () =>  {}, color = Colors.light.primaryLight, left = false, darkmode = false, ...props}) => {

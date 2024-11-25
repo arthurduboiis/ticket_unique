@@ -1,9 +1,9 @@
 import React from "react";
 import { Container } from "../atoms";
 import { HorizontalCardEvent, HeaderTickets } from "../organismes";
-import ModalMessage from '../../components/ModalSearch';
+// import ModalMessage from '../../components/ModalSearch';
 import { RefreshControl } from 'react-native';
-import { Colors } from "../../styles/colors";
+import { Colors } from '../../constants/Colors'
 
 const Tickets = ({
   tickets,
@@ -29,10 +29,10 @@ const Tickets = ({
         activeFilters={activeFilters}
         openFilter={openFilter}
       />
-      <ModalMessage
+      {/* <ModalMessage
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
-      />
+      /> */}
       <Container.ScrollContainer
         refreshControl={
           <RefreshControl

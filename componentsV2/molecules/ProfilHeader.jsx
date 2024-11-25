@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, ImageCustom, Typo } from '../atoms';
-import DefaultProfilePicture from '../../../assets/defaultProfilPicture.png';
+import DefaultProfilePicture from '../../assets/defaultProfilPicture.png';
 import { TouchableHighlight } from 'react-native';
 
 const ProfilHeader = ({

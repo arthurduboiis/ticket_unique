@@ -1,6 +1,6 @@
 import React from 'react'
 import { Native } from '../nanites'
-import { Colors } from '../../styles/colors'
+import { Colors } from '../../constants/Colors'
 import { Chevron } from '../atoms/Icon'
 
 const FollowingButton = ({title = 'suivi', action = () => {}, ...props}) => {
