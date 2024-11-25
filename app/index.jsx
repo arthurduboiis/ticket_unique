@@ -51,44 +51,12 @@ const theme = {
 export default function Page() {
   const { user } = useAuthStore();
 
-  const hideNavBar = async () => {
-    // Prevent content from moving up when bar is shown
-    await NavigationBar.setPositionAsync("absolute");
-
-    // Hide bottom bar
-    await NavigationBar.setVisibilityAsync("hidden");
-
-    // Show the bar when user swipes
-    await NavigationBar.setBehaviorAsync("overlay-swipe");
-  };
-
-  useEffect(() => {
-    if (Platform.OS === "android") {
-      const handleAppStateChange = (nextAppState) => {
-        // If app is being used, hide nav bar
-        if (nextAppState === "active") {
-          hideNavBar();
-        }
-      };
-
-      // Subscribe to app state changes
-      const appStateSubscription = AppState.addEventListener(
-        "change",
-        handleAppStateChange
-      );
-
-      // Clean up the event listener when the component unmounts
-      return () => {
-        appStateSubscription.remove();
-      };
-    }
-  }, []);
   return (
     <GestureHandlerRootView>
       <ThemeProvider theme={theme}>
         <SafeAreaProvider>
           <NavigationContainer independent={true}>
-            {user ? <MainStackNavigator /> : <AuthStackNavigator />}
+            {user ? <MainStackNavigator /> : <MainStackNavigator />}
           </NavigationContainer>
         </SafeAreaProvider>
       </ThemeProvider>
@@ -128,7 +96,9 @@ const AuthStackNavigator = () => (
 const MainStackNavigator = () => (
   <Stack.Navigator
     initialRouteName="MainLayout"
-    screenOptions={{ header: (props) => <CustomHeader {...props} /> }}
+    screenOptions={{ header: (props) => <CustomHeader {...props} />,
+    contentStyle: { backgroundColor: "#030303" },
+  }}
   >
     <Stack.Screen name="MainLayout" component={MainLayout} />
     {/* <Stack.Screen name="Event" component={Event} /> */}
