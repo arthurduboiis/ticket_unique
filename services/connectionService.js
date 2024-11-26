@@ -1,64 +1,143 @@
 import useAuthStore from "../store/authStore";
-import axios from "axios";
+import api from "../services/api"; 
+import {jwtDecode} from 'jwt-decode';
 
-const API_URL = process.env.URL_BACKEND;
 
 export const login = async (email, password) => {
-  const { setUser, isTokenValid, saveToken } = useAuthStore.getState();
+  const { setUser, saveRefreshToken, setAccessToken, isTokenValid } = useAuthStore.getState();
 
   if (!email || !password) {
-    return;
+    throw new Error("Email and password are required.");
   }
+
   try {
-    const response = await axios.post(`${API_URL}/auth/login`, {
-      email,
-      password,
-    });
-    if (isTokenValid(response.data.access_token)) {
-      saveToken("token", response.data.access_token);
-      setUser(response.data);
+    const response = await api.post("/auth/login", { email, password });
+    const { access_token, refresh_token } = response.data;
+
+    if (!isTokenValid(access_token)) {
+      throw new Error("Invalid access token received.");
     }
+
+    // Sauvegarder les tokens
+    setAccessToken(access_token);
+    await saveRefreshToken(refresh_token);
+
+    // Mettre à jour l'utilisateur
+    setUser(jwtDecode(access_token));
+
+    console.log("Login successful");
   } catch (error) {
-    if (error.response.status === 401) {
-      throw new Error(error.response.data.message);
+    const status = error.response?.status;
+    const message = error.response?.data?.message || "An error occurred during login.";
+
+    if (status === 401) {
+      throw new Error(message);
     }
+    console.error("Login error:", error);
+    throw new Error(message);
   }
 };
 
 export const logout = async () => {
-  const { logout, removeToken } = useAuthStore.getState();
-  await removeToken("token");
-  logout();
+  const { logout, removeRefreshToken } = useAuthStore.getState();
+
+  try {
+    await removeRefreshToken(); 
+    logout(); 
+    console.log("Logout successful");
+  } catch (error) {
+    console.error("Logout error:", error);
+    throw new Error("Failed to logout.");
+  }
 };
 
+const refreshAccessToken = async () => {
+  const { getRefreshToken, isTokenValid, setAccessToken, setUser } = useAuthStore.getState();
+
+  try {
+    const refreshToken = await getRefreshToken();
+    console.log("refreshToken", refreshToken);
+    if (!refreshToken || !isTokenValid(refreshToken)) {
+      throw new Error("Refresh token invalid or expired");
+    }
+
+    const response = await api.post("/auth/refresh", { refreshToken: refreshToken });
+    const newAccessToken = response.data.access_token;
+
+    setAccessToken(newAccessToken);
+
+    await setUser(jwtDecode(newAccessToken));
+
+    return newAccessToken;
+  }
+  catch (error) {
+
+    console.error("Failed to refresh access token:", error.response);
+    throw error;
+  }
+}
+
+export const initializeSession = async () => {
+  const { getRefreshToken, isTokenValid, setAccessToken, setUser } = useAuthStore.getState();
+
+  try {
+    const refreshToken = await getRefreshToken();
+    if (refreshToken && isTokenValid(refreshToken)) {
+      const accessToken = await refreshAccessToken();
+      setAccessToken(accessToken);
+
+      await setUser(jwtDecode(accessToken));
+    } else {
+      console.log("No valid session found. User not logged in.");
+    }
+  } catch (error) {
+    console.error("Failed to initialize session:", error);
+    setAccessToken(null);
+    setUser(null);
+  }
+}
+
+
 export const register = async (email, password, passwordConfirm) => {
-  const { setUser, isTokenValid, saveToken } = useAuthStore.getState();
+  const { setUser, saveRefreshToken, setAccessToken, isTokenValid } = useAuthStore.getState();
 
   if (!email || !password || !passwordConfirm) {
-    return;
+    throw new Error("All fields are required.");
   }
 
   if (password !== passwordConfirm) {
-    return;
+    throw new Error("Passwords do not match.");
   }
 
   try {
-    console.log(email, password);
-    const response = await axios.post(`${API_URL}/auth/register`, {
-      email,
-      password,
-    });
-    if (isTokenValid(response.data.access_token)) {
-      saveToken("token", response.data.access_token);
-      setUser(response.data);
+    const response = await api.post("/auth/register", { email, password });
+    const { access_token, refresh_token } = response.data;
+
+    if (!isTokenValid(access_token)) {
+      throw new Error("Invalid access token received.");
     }
+
+    // Sauvegarder les tokens
+    setAccessToken(access_token);
+    await saveRefreshToken(refresh_token);
+
+    // Mettre à jour l'utilisateur
+    setUser(jwtDecode(access_token));
+
+
+    console.log("Registration successful");
   } catch (error) {
-    if (error.response.status >= 401) {
-      console.log(error.response.data.message);
-      throw new Error(error.response.data.message);
+    const status = error.response?.status;
+    const message = error.response?.data?.message || "An error occurred during registration.";
+
+    if (status === 400 || status === 401) {
+      throw new Error(message);
     }
+    console.error("Registration error:", error);
+    throw new Error(message);
   }
 };
+
 
 export const forgotPassword = async (email) => {
   console.log(API_URL);

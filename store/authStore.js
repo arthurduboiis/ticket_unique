@@ -3,29 +3,41 @@ import * as SecureStore from "expo-secure-store";
 import {jwtDecode} from 'jwt-decode';
 
 
+
 const useAuthStore = create((set, get) => ({
   user: null,
-  saveToken: async (key, value) => {
-    await SecureStore.setItemAsync(key, value);
+  accessToken: null, 
+  setAccessToken: (token) => set({ accessToken: token }),
+  setUser: (user) => set({ user }),
+
+   saveRefreshToken: async (token) => {
+    await SecureStore.setItemAsync("refresh_token", token);
   },
+
+  getRefreshToken: async () => {
+    return await SecureStore.getItemAsync("refresh_token");
+  },
+
+  removeRefreshToken: async () => {
+    await SecureStore.deleteItemAsync("refresh_token");
+  },
+
   isTokenValid: (token) => {
     try {
-      const { exp} = jwtDecode(token);
+      const { exp } = jwtDecode(token); 
       return Date.now() < exp * 1000; 
     } catch (error) {
-      console.log(error)
-      return false; 
+      console.error("Invalid token:", error);
+      return false;
     }
   },
 
-  getToken: async (key) => {
-    return await SecureStore.getItemAsync(key);
+  // *** Déconnexion ***
+  logout: async () => {
+    set({ user: null, accessToken: null });
+    await get().removeRefreshToken();
+    console.log("User logged out and tokens cleared.");
   },
-  removeToken: async (key) => {
-    await SecureStore.deleteItemAsync(key);
-  },
-  setUser: (user) => set({ user }),
-  logout: () => set({ user: null }),
 }));
 
 export default useAuthStore;

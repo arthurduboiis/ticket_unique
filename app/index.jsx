@@ -6,6 +6,7 @@ import MainLayout from "../navigation/MainLayout";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CustomHeader from "../navigation/CustomHeader";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { initializeSession } from "../services/connectionService";
 
 import {
   LoginPage,
@@ -46,16 +47,10 @@ const theme = {
 };
 
 export default function Page() {
-  const { user, getToken, isTokenValid, setUser } = useAuthStore();
+  const { user } = useAuthStore();
 
   useEffect(() => {
-    const checkToken = async () => {
-      const token = await getToken("token");
-      if (token && isTokenValid(token)) {
-        setUser(token);
-      }
-    };
-    checkToken();
+    initializeSession();
   }, []);
 
 
