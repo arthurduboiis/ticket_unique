@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { AuthTemplate } from '../../templates';
 import { useNavigation } from '@react-navigation/core';
 import { Alert, Linking } from 'react-native';
+import { register } from '../../../services/connectionService';
 
 const SignupPage = () => {
   const [email, setEmail] = useState('');
@@ -37,8 +38,13 @@ const SignupPage = () => {
     setNewsletter(!newsletter);
   }
 
-  const handleRegisterClassic = () => {
-    console.log('Register classic')
+  const handleRegisterClassic = async () => {
+    try {
+      await register(email, password, passwordConfirm);
+    } catch (error){
+      setError(error.message);
+    }
+ 
   }
 
   return (

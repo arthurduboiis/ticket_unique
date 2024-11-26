@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AuthTemplate } from '../../templates';
 import { useNavigation } from '@react-navigation/core';
+import { login } from '../../../services/connectionService';
 
 
 const LoginPage = () => {
@@ -18,6 +19,12 @@ const LoginPage = () => {
   };
 
   const handleLoginClassic = async () => {
+    try {
+      await login(email, password);
+    }catch (error) {
+      setError(error.message);
+    }
+
     console.log('Login with email and password');
   }
 

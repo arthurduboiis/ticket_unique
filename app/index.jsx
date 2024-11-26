@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Platform } from "react-native";
 import { ThemeProvider } from "styled-components/native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import useAuthStore from "../store/authStore";
@@ -7,8 +6,6 @@ import MainLayout from "../navigation/MainLayout";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CustomHeader from "../navigation/CustomHeader";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import * as NavigationBar from "expo-navigation-bar";
-import { AppState } from "react-native";
 
 import {
   LoginPage,
@@ -49,14 +46,26 @@ const theme = {
 };
 
 export default function Page() {
-  const { user } = useAuthStore();
+  const { user, getToken, isTokenValid, setUser } = useAuthStore();
+
+  useEffect(() => {
+    const checkToken = async () => {
+      const token = await getToken("token");
+      if (token && isTokenValid(token)) {
+        setUser(token);
+      }
+    };
+    checkToken();
+  }, []);
+
+
 
   return (
     <GestureHandlerRootView>
       <ThemeProvider theme={theme}>
         <SafeAreaProvider>
           <NavigationContainer independent={true}>
-            {user ? <MainStackNavigator /> : <MainStackNavigator />}
+            {user ? <MainStackNavigator /> : <AuthStackNavigator />}
           </NavigationContainer>
         </SafeAreaProvider>
       </ThemeProvider>

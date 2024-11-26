@@ -6,5 +6,6 @@ import ColContainer from "./ColContainer";
 import KeyboardAvoidingLayout from "./KeyboardAvoidingLayout";
 import PageContainer from "./PageContainer";
 import ScrollContainer from "./ScrollContainer";
+import ModalContainer from "./Modal";
 
-export {SectionList, DisplayContainer, ButtonContainer, RowContainer, ColContainer, KeyboardAvoidingLayout, PageContainer, ScrollContainer };
+export {SectionList, DisplayContainer, ButtonContainer, RowContainer, ColContainer, KeyboardAvoidingLayout, PageContainer, ScrollContainer, ModalContainer };
