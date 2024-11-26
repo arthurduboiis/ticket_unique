@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/core';
 // import { auth, db } from '../../../firebase';
 // import { doc, getDoc, setDoc } from '@react-native-firebase/firestore';
 // import storage from '@react-native-firebase/storage';
-
+import { logout } from '../../services/connectionService';
 const ProfilePage = () => {
   const navigation = useNavigation();
   const [logoutModalVisible, setLogoutModalVisible] = useState(false);
@@ -91,6 +91,11 @@ const ProfilePage = () => {
     console.log("image picker")
   }
 
+  const logoutFunction = async () => {
+    console.log("lougoutttttttt")
+    await logout();
+    setLogoutModalVisible(false);
+  };
   
 
   const menu = [
@@ -131,6 +136,7 @@ const ProfilePage = () => {
       followingNumber={0}
       source={photoURL}
       menu={menu}
+      logoutFunction={logoutFunction}
       handleImagePicker={handleImagePicker}
       logoutModalVisible={logoutModalVisible}
       setLogoutModalVisible={setLogoutModalVisible}

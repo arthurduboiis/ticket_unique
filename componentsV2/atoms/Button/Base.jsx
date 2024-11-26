@@ -7,8 +7,10 @@ const Base = ({ title, action = () => {} , darkmode = false,...props}) => {
   return (
     <Native.StyledButton
       onPress={() => {
-        action();
-        console.log("Primary button pressed");
+        if (typeof action === 'function') {
+          action(); // Exécute uniquement si c'est une fonction
+          console.log("Primary button pressed");
+        }
       }}
       bgColor={darkmode ? Colors.light.primaryDark : Colors.light.yellow}
       {...props}
