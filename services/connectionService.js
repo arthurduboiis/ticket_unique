@@ -56,11 +56,12 @@ const refreshAccessToken = async () => {
 
   try {
     const refreshToken = await getRefreshToken();
+    console.log("refreshToken", refreshToken);
     if (!refreshToken || !isTokenValid(refreshToken)) {
       throw new Error("Refresh token invalid or expired");
     }
 
-    const response = await api.post("/auth/refresh", { refresh_token: refreshToken });
+    const response = await api.post("/auth/refresh", { refreshToken: refreshToken });
     const newAccessToken = response.data.access_token;
 
     setAccessToken(newAccessToken);
@@ -70,7 +71,8 @@ const refreshAccessToken = async () => {
     return newAccessToken;
   }
   catch (error) {
-    console.error("Failed to refresh access token:", error);
+
+    console.error("Failed to refresh access token:", error.response);
     throw error;
   }
 }
@@ -90,7 +92,8 @@ export const initializeSession = async () => {
     }
   } catch (error) {
     console.error("Failed to initialize session:", error);
-    set({ user: null, accessToken: null });
+    setAccessToken(null);
+    setUser(null);
   }
 }
 

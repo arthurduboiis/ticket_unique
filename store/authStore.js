@@ -22,7 +22,6 @@ const useAuthStore = create((set, get) => ({
     await SecureStore.deleteItemAsync("refresh_token");
   },
 
-
   isTokenValid: (token) => {
     try {
       const { exp } = jwtDecode(token); 
@@ -32,9 +31,6 @@ const useAuthStore = create((set, get) => ({
       return false;
     }
   },
-
-
-
 
   // *** Déconnexion ***
   logout: async () => {
