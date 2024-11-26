@@ -1,3 +1,6 @@
+if (__DEV__) {
+  require("../ReactotronConfig");
+}
 import { useEffect } from "react";
 import { ThemeProvider } from "styled-components/native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
