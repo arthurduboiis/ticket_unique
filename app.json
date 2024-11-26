@@ -12,23 +12,43 @@
       "resizeMode": "contain",
       "backgroundColor": "#000000"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "ticket-unique.com"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/foreground-ut-android.png",
+        "backgroundImage": "./assets/background-ut-android.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.ticketunique.mobile",
+      "versionCode": 1
+    },
+    "androidStatusBar": {
+      "backgroundColor": "#030303",
+      "translucent": false,
+      "barStyle": "light-content"
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/favicon.png"
     },
     "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 34,
+            "targetSdkVersion": 34,
+            "buildToolsVersion": "34.0.0"
+          }
+        }
+      ]
     ]
   }
 }
