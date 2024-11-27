@@ -3,7 +3,7 @@ import { Native } from '../nanites'
 import { Colors } from '../../constants/Colors'
 import Chevron from '../atoms/Icon/Chevron'
 
-const SecondaryButton = ({title, action = () =>  {}, color = Colors.light.primaryLight, left = false, darkmode = false, ...props}) => {
+const SecondaryButton = ({title, action = () =>  {}, color = Colors.light.primaryLight, left = false, modalMode = false, ...props}) => {
   const defaultTitle = "Secondary Button title to set";
   return (
     <Native.StyledButton
@@ -14,9 +14,9 @@ const SecondaryButton = ({title, action = () =>  {}, color = Colors.light.primar
       bgColor={'transparent'}
       {...props}
     >
-      {left && <Chevron color={darkmode ? Colors.light.primaryDark : color} direction='left'/>}
-      <Native.StyledOwnersText fontSize="18px" color={darkmode ? Colors.light.primaryDark : color}>{title ? title : defaultTitle}</Native.StyledOwnersText>
-      {!left && <Chevron color={darkmode ? Colors.light.primaryDark : color} />}
+      {left && <Chevron color={modalMode ? Colors.light.primaryDark : color} direction='left'/>}
+      <Native.StyledOwnersText fontSize="18px" color={modalMode ? Colors.light.primaryDark : color}>{title ? title : defaultTitle}</Native.StyledOwnersText>
+      {!left && <Chevron color={modalMode ? Colors.light.primaryDark : color} />}
     </Native.StyledButton>
 
   )

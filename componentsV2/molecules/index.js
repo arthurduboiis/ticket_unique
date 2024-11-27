@@ -11,4 +11,4 @@ import LabeledInput from "./LabeledInput";
 import ConnectionHeader from "./ConnectionHeader";
 import * as Modal from "./Modal";
 
-export { IconButton, SecondaryButton, FollowingButton, LikeCheckbox, FilterButton, Display, DisplayDescription, ProfileList, LabeledInput, ConnectionHeader, Modal };
+export { IconButton, SecondaryButton, FollowingButton, LikeCheckbox, FilterButton, Display, DisplayDescription, ProfileList, LabeledInput, ConnectionHeader, Modal, OrgaItem };

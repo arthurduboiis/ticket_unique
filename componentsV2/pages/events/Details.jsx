@@ -3,6 +3,13 @@ import { EventsTemplate } from '../../templates'
 
 const Details = ({route, navigation}) => {
   const { event } = route.params
+  const [liked, setLiked] = React.useState(false)
+
+  const goToTicketSelection = () => {
+    console.log('Go to ticket selection')
+  }
+
+
   return (
     <EventsTemplate.Details 
       imageURL={event.image}
@@ -13,6 +20,11 @@ const Details = ({route, navigation}) => {
       organizerName={event.coOrganizer}
       mood={event.mood}
       source={event.company.companyLogo.url}
+      startingPrice={event.startingPrice}
+      action={goToTicketSelection}
+      liked={liked}
+      toggleLiked={() => setLiked(!liked)}
+      numberOfLike={event.like}
     />
   )
 }
