@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { changePassword } from '../../../services/connectionService';
-import { Profile, ProfileTemplate } from '../../templates';
+import { ProfileTemplate } from '../../templates';
 
 const ChangePasswordPage = () => {
   const navigation = useNavigation();
