@@ -3,7 +3,7 @@ import { Native } from "../../nanites";
 
 const OwnersText = (props) => {
     const defaultText = "text not working";
-    return <Native.StyledOwnersText {...props}>{props.text ? props.text : defaultText}</Native.StyledOwnersText>;
+    return <Native.StyledOwnersText {...props}/>;
 }
 
 export default OwnersText;

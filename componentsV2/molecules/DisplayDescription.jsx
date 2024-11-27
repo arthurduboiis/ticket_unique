@@ -7,12 +7,11 @@ const DisplayDescription = ({ name, place, ...props }) => {
   const defaultPlace = 'Default Place';
   return (
     <Container.DisplayContainer flexDirection={'column'} gap={'3px'} {...props}>
-      <Typo.OwnersText text={name ? name : defaultName} />
+      <Typo.OwnersText >{name ? name : defaultName}</Typo.OwnersText>
       <Typo.OwnersText
-        text={place ? place : defaultPlace}
         fontSize={'14px'}
         color={Colors.light.dimmedLight}
-      />
+      >{place ? place : defaultPlace}</Typo.OwnersText>
     </Container.DisplayContainer>
   );
 };

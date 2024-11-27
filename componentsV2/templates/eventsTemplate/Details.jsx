@@ -54,11 +54,11 @@ const Details = ({
     <Container.PageContainer justifyContent={"flex-start"}>
       <ImageCustom.Rectangle source={imageURL} />
       <Typo.Gotham text={eventTitle} />
-      <Typo.OwnersText text={"Par " + organizerName} />
+      <Typo.OwnersText >{"Par " + organizerName}</Typo.OwnersText>
       {/* Lun 5 Août de 19h30 à 23h00 faire ce format avec le startDate et endDate, mettre Du Lun 5 Août au Mer 7 Août si plusieurs jours, la date arrive au format 2025-04-23T18:25:43.511Z */}
-      <Typo.OwnersText text={formatDate(startDate, endDate)} />
-      <Typo.OwnersText text={'description'} uppercase />
-      <Typo.OwnersText text={eventDescription} />
+      <Typo.OwnersText>{formatDate(startDate, endDate)}</Typo.OwnersText>
+      <Typo.OwnersText uppercase >{'description'}</Typo.OwnersText>
+      <Typo.OwnersText  >{eventDescription}</Typo.OwnersText>
     </Container.PageContainer>
   );
 };
