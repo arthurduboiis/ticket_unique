@@ -2,9 +2,8 @@ import { Colors } from '../../../constants/Colors'
 import { useThemeColor } from '../../../hooks/useThemeColor';
 import { Native } from "../../nanites";
 
-const Base = ({ title, action = () => {} , darkmode = false,...props}) => {
+const Base = ({ title, action = () => {} , modalMode = false,...props}) => {
   const defaultTitle = "Primary Button title to set";
-  console.log(useThemeColor("yellow"))
   return (
     <Native.StyledButton
       onPress={() => {
@@ -13,10 +12,10 @@ const Base = ({ title, action = () => {} , darkmode = false,...props}) => {
           console.log("Primary button pressed");
         }
       }}
-      bgColor={darkmode ? Colors.dark.primaryDark : Colors.light.yellow}
+      bgColor={modalMode ? useThemeColor("primaryDark") : useThemeColor("yellow")}
       {...props}
     >
-      <Native.StyledOwnersText fontSize="18px" color={darkmode ? Colors.light.primaryLight : Colors.light.primaryDark}>
+      <Native.StyledOwnersText fontSize="18px" color={modalMode ? Colors.light.primaryLight : Colors.light.primaryDark}>
         {title ? title : defaultTitle}
       </Native.StyledOwnersText>
     </Native.StyledButton>

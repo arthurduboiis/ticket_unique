@@ -6,7 +6,7 @@ const ModalLogout = ({action, modalVisible, closeModal}) => {
   return (
     <Container.ModalContainer modalVisible={modalVisible} closeModal={closeModal}>
       <Typo.OwnersText  color={Colors.light.primaryDark} >Se déconnecter ?</Typo.OwnersText>
-      <Button.Base title='Oui' action={action} darkmode={true} />
+      <Button.Base title='Oui' action={action} modalMode={true} />
     </Container.ModalContainer>
   )
 }

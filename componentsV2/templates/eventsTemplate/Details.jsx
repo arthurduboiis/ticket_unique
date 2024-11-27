@@ -1,7 +1,7 @@
 import React from "react";
-import { Container, ImageCustom, Tag, Typo } from "../../atoms";
+import { Button, Container, ImageCustom, Tag, Typo } from "../../atoms";
 import { Colors } from "../../../constants/Colors";
-import OrgaItem from "../../molecules/OrgaItem";
+import { LikeCheckbox, OrgaItem } from "../../molecules";
 
 const Details = ({
   imageURL,
@@ -12,10 +12,21 @@ const Details = ({
   organizerName,
   mood,
   source,
-
+  startingPrice,
+  action,
+  liked,
+  toggleLiked,
+  numberOfLike,
 }) => {
+
+  let interestedPeopleText = "Il n'y a pas encore de participants intéressés";
+  if (numberOfLike === 1) {
+    interestedPeopleText = "1 personne intéressée";
+  } else if (numberOfLike > 1) {
+    interestedPeopleText = `${numberOfLike} personnes intéressées`;
+  }
+
   const formatDate = (start, end) => {
-    // Lun 5 Août de 19h30 à 23h00 faire ce format avec le startDate et endDate, mettre Du Lun 5 Août au Mer 7 Août si plusieurs jours, la date arrive au format 2025-04-23T18:25:43.511Z
     const startDate = new Date(start);
     const endDate = new Date(end);
     const startDay = startDate.getDate();
@@ -55,28 +66,46 @@ const Details = ({
       return `Du ${startDayName} ${startDay} ${startMonthName} au ${endDayName} ${endDay} ${endMonthName}`;
     }
   };
-  console.log(source)
+  console.log(source);
   return (
-    <Container.PageContainer justifyContent={"flex-start"} gap={"10px"}>
-      <ImageCustom.Rectangle source={imageURL} />
-      <Typo.Gotham text={eventTitle} />
-      <Typo.OwnersText>
-        <Typo.OwnersText color={Colors.light.dimmedLight}>Par </Typo.OwnersText>
-        {organizerName}
-      </Typo.OwnersText>
-      {/* Lun 5 Août de 19h30 à 23h00 faire ce format avec le startDate et endDate, mettre Du Lun 5 Août au Mer 7 Août si plusieurs jours, la date arrive au format 2025-04-23T18:25:43.511Z */}
-      <Typo.OwnersText>{formatDate(startDate, endDate)}</Typo.OwnersText>
-      <Typo.OwnersText uppercase>{"description"}</Typo.OwnersText>
-      <Typo.OwnersText>{eventDescription}</Typo.OwnersText>
-      {mood ? (
-        <Container.ColContainer>
-          <Typo.OwnersText uppercase>{"Mood"}</Typo.OwnersText>
-          <Tag.Base title={mood} />
-        </Container.ColContainer>
-      ) : null}
+    <Container.PageContainer
+      justifyContent={"space-between"}
+      paddingBottom={"0px"}
+    >
+      <Container.ColContainer gap={"10px"}>
+        <ImageCustom.Rectangle source={imageURL} />
+        <Typo.Gotham text={eventTitle} />
+        <Typo.OwnersText>
+          <Typo.OwnersText color={Colors.light.dimmedLight}>
+            Par{" "}
+          </Typo.OwnersText>
+          {organizerName}
+        </Typo.OwnersText>
+        <Container.RowContainer gap={"10px"}>
+          <LikeCheckbox liked={liked} toggleLiked={toggleLiked} />
+          <Typo.OwnersText >{interestedPeopleText}</Typo.OwnersText>
+        </Container.RowContainer>
+        <Typo.OwnersText>{formatDate(startDate, endDate)}</Typo.OwnersText>
+        <Typo.OwnersText uppercase>{"description"}</Typo.OwnersText>
+        <Typo.OwnersText>{eventDescription}</Typo.OwnersText>
+        {mood ? (
+          <Container.ColContainer gap={"5px"}>
+            <Typo.OwnersText uppercase>{"Mood"}</Typo.OwnersText>
+            <Tag.Base title={mood} />
+          </Container.ColContainer>
+        ) : null}
         <Typo.OwnersText uppercase>{"Organisé par"}</Typo.OwnersText>
-        <OrgaItem eventsNumber={0} followersNumber={0} orgaName={organizerName} source={source}/>
-      
+        <OrgaItem
+          eventsNumber={0}
+          followersNumber={0}
+          orgaName={organizerName}
+          source={source}
+        />
+      </Container.ColContainer>
+      <Button.Base
+        title={"à partir de " + startingPrice + "€"}
+        action={action}
+      />
     </Container.PageContainer>
   );
 };
