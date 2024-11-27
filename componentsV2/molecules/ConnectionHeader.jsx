@@ -6,7 +6,7 @@ const ConnectionHeader = ({title}) => {
   return (
     <Container.ColContainer gap={'20px'} alignItems={'center'} width={'100%'}>
       <Icon.Base source={LogoUT} width={'70px'} height={'70px'} />
-      <Typo.OwnersText fontSize={'20px'} fontWeight={'500'} text={title} />
+      <Typo.OwnersText fontSize={'20px'} fontWeight={'500'} >{title}</Typo.OwnersText>
     
     </Container.ColContainer>
   )

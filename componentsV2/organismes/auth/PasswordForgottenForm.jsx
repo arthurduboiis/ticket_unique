@@ -11,9 +11,8 @@ const PasswordForgottenForm = ({
     <Container.ColContainer gap={'20px'} alignItems={'center'} width={'100%'}>
       <Typo.OwnersText
         textAlign={'center'}
-        text={'Un mail te sera envoyé pour réinitialiser ton mot de passe'}
         paddingTop={'10px'}
-      />
+      >{'Un mail te sera envoyé pour réinitialiser ton mot de passe'}</Typo.OwnersText>
       <Container.ColContainer
         alignItems={'center'}
         width={'100%'}

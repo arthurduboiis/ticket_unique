@@ -22,7 +22,7 @@ const LoginForm = ({
           paddingVertical={'10px'}
         >
           {error ? (
-            <Typo.OwnersText color={Colors.light.dimmedLight} text={error}/>
+            <Typo.OwnersText color={Colors.light.dimmedLight} >{error}</Typo.OwnersText>
               
           ) : null}
           <LabeledInput

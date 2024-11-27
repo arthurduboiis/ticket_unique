@@ -86,6 +86,10 @@ export const initializeSession = async () => {
 
   try {
     const refreshToken = await getRefreshToken();
+    if (!refreshToken) {
+      console.log("No refresh token found. User not logged in.");
+      return;
+    }
     if (refreshToken && isTokenValid(refreshToken)) {
       const accessToken = await refreshAccessToken();
       setAccessToken(accessToken);

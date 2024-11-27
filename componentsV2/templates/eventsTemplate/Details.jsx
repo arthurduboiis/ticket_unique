@@ -1,5 +1,7 @@
 import React from "react";
-import { Container, ImageCustom, Typo } from "../../atoms";
+import { Container, ImageCustom, Tag, Typo } from "../../atoms";
+import { Colors } from "../../../constants/Colors";
+import OrgaItem from "../../molecules/OrgaItem";
 
 const Details = ({
   imageURL,
@@ -8,6 +10,9 @@ const Details = ({
   startDate,
   endDate,
   organizerName,
+  mood,
+  source,
+
 }) => {
   const formatDate = (start, end) => {
     // Lun 5 Août de 19h30 à 23h00 faire ce format avec le startDate et endDate, mettre Du Lun 5 Août au Mer 7 Août si plusieurs jours, la date arrive au format 2025-04-23T18:25:43.511Z
@@ -50,15 +55,28 @@ const Details = ({
       return `Du ${startDayName} ${startDay} ${startMonthName} au ${endDayName} ${endDay} ${endMonthName}`;
     }
   };
+  console.log(source)
   return (
-    <Container.PageContainer justifyContent={"flex-start"}>
+    <Container.PageContainer justifyContent={"flex-start"} gap={"10px"}>
       <ImageCustom.Rectangle source={imageURL} />
       <Typo.Gotham text={eventTitle} />
-      <Typo.OwnersText text={"Par " + organizerName} />
+      <Typo.OwnersText>
+        <Typo.OwnersText color={Colors.light.dimmedLight}>Par </Typo.OwnersText>
+        {organizerName}
+      </Typo.OwnersText>
       {/* Lun 5 Août de 19h30 à 23h00 faire ce format avec le startDate et endDate, mettre Du Lun 5 Août au Mer 7 Août si plusieurs jours, la date arrive au format 2025-04-23T18:25:43.511Z */}
-      <Typo.OwnersText text={formatDate(startDate, endDate)} />
-      <Typo.OwnersText text={'description'} uppercase />
-      <Typo.OwnersText text={eventDescription} />
+      <Typo.OwnersText>{formatDate(startDate, endDate)}</Typo.OwnersText>
+      <Typo.OwnersText uppercase>{"description"}</Typo.OwnersText>
+      <Typo.OwnersText>{eventDescription}</Typo.OwnersText>
+      {mood ? (
+        <Container.ColContainer>
+          <Typo.OwnersText uppercase>{"Mood"}</Typo.OwnersText>
+          <Tag.Base title={mood} />
+        </Container.ColContainer>
+      ) : null}
+        <Typo.OwnersText uppercase>{"Organisé par"}</Typo.OwnersText>
+        <OrgaItem eventsNumber={0} followersNumber={0} orgaName={organizerName} source={source}/>
+      
     </Container.PageContainer>
   );
 };

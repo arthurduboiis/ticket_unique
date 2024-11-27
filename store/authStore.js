@@ -15,7 +15,7 @@ const useAuthStore = create((set, get) => ({
   },
 
   getRefreshToken: async () => {
-    return await SecureStore.getItemAsync("refresh_token");
+    return await SecureStore.getItemAsync("refresh_token",{"keychainAccessible": SecureStore.AFTER_FIRST_UNLOCK});
   },
 
   removeRefreshToken: async () => {

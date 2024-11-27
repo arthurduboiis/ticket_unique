@@ -11,6 +11,8 @@ const Details = ({route, navigation}) => {
       startDate={event.startDate}
       endDate={event.endDate}
       organizerName={event.coOrganizer}
+      mood={event.mood}
+      source={event.company.companyLogo.url}
     />
   )
 }
