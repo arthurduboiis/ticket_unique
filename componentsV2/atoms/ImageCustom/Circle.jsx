@@ -8,7 +8,7 @@ const Circle = (props) => {
       width={props.width ? props.width : '60px'}
       height={props.height ? props.height : '60px'}
       imageStyle={{ borderRadius: 50 }}
-      onC
+      
       {...props}
     />
   );

@@ -25,7 +25,7 @@ export const Colors = {
   },
   dark: {
     transparent: "rgba(0, 0, 0, 0)",
-    yellow: "#99CCFF",
+    yellow: "#FFFF66",
     primaryDark: "#030303",
     primaryLight: "#FFFFFF",
     secondaryLight: "#F2F2F2",
