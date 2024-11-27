@@ -1,6 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // import EditPreference from '../screens/singles/EditPreferences';
-// import ChangePassword from '../screens/singles/ChangePassword';
 // import EditInterests from '../screens/singles/EditInterests';
 // import OldEvent from '../screens/singles/OldEvent';
 // import MyWallet from '../screens/singles/MyWallet';
@@ -13,6 +12,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import CustomHeader from './CustomHeader';
 import { Profile, ProfilePage } from '../componentsV2/pages';
+import { ChangePassword } from '../componentsV2/pages/profile';
 
 const Stack = createNativeStackNavigator();
 
@@ -52,7 +52,7 @@ function ProfileStackNavigator() {
           animation: 'slide_from_right',
           headerShown: true,
         }}
-      />
+      /> */}
       <Stack.Screen
         name="ChangePassword"
         component={ChangePassword}
@@ -61,7 +61,7 @@ function ProfileStackNavigator() {
           animation: 'slide_from_right',
           headerShown: true,
         }}
-      /> */}
+      />
       <Stack.Screen
         name="Settings"
         component={Profile.Settings}

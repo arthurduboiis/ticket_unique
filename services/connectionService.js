@@ -27,6 +27,10 @@ export const login = async (email, password) => {
 
     console.log("Login successful");
   } catch (error) {
+    console.log("ERROR", error);
+    console.log("ERROR RESPONSE", error.response);
+    console.log("ERROR RESPONSE DATA", error.response.data);
+    console.log("ERROR RESPONSE STATUS", error.response.status);
     const status = error.response?.status;
     const message = error.response?.data?.message || "An error occurred during login.";
 
@@ -110,6 +114,8 @@ export const register = async (email, password, passwordConfirm) => {
   }
 
   try {
+    console.log("Registering user with email:", email);
+    console.log(api);
     const response = await api.post("/auth/register", { email, password });
     const { access_token, refresh_token } = response.data;
 
@@ -135,6 +141,44 @@ export const register = async (email, password, passwordConfirm) => {
     }
     console.error("Registration error:", error);
     throw new Error(message);
+  }
+};
+
+export const changePassword = async (oldPassword, newPassword, confirmPassword) => {
+  const { getRefreshToken } = useAuthStore.getState();
+  console.log("OLD", oldPassword);
+  console.log("NEW", newPassword);
+  console.log("CONFIRM", confirmPassword)
+
+  if (!oldPassword || !newPassword || !confirmPassword) {
+    throw new Error("Tous les champs sont obligatoires.");
+  }
+
+  if (newPassword !== confirmPassword) {
+    throw new Error("Le nouveau mot de passe et la confirmation ne correspondent pas.");
+  }
+
+  try {
+    const token = await getRefreshToken();
+    console.log("TOKEN", token);
+    const response = await api.patch(
+      "/auth/change-password",
+      {
+        oldPassword,
+        newPassword,
+        confirmPassword
+      },
+    );
+    console.log("Mot de passe changé avec succès:", response.data);
+    return response.data;
+
+  } catch (error) {
+    console.error("Erreur lors du changement de mot de passe:", error);
+    if (error.response) {
+      throw new Error(error.response.data.message || "Erreur lors du changement de mot de passe.");
+    } else {
+      throw new Error("Erreur réseau ou de connexion.");
+    }
   }
 };
 
