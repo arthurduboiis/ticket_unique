@@ -4,5 +4,6 @@ import SearchBar from './SearchBar';
 import HorizontalCardEvent from './HorizontalCardEvent';
 import HeaderTickets from './HeaderTickets';
 import EditProfileForm from './EditProfileForm';
+import TicketSelected from './TicketSelected';
 
-export { CardEvent, AuthOrganism, SearchBar, HorizontalCardEvent, HeaderTickets, EditProfileForm };
+export { CardEvent, AuthOrganism, SearchBar, HorizontalCardEvent, HeaderTickets, EditProfileForm, TicketSelected };

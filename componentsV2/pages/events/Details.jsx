@@ -6,10 +6,10 @@ const Details = ({route, navigation}) => {
   const [liked, setLiked] = React.useState(false)
 
   const goToTicketSelection = () => {
-    console.log('Go to ticket selection')
+    navigation.navigate('EventTicketSelection', { event })
   }
 
-
+  console.log(event.likes)
   return (
     <EventsTemplate.Details 
       imageURL={event.image}
@@ -24,7 +24,7 @@ const Details = ({route, navigation}) => {
       action={goToTicketSelection}
       liked={liked}
       toggleLiked={() => setLiked(!liked)}
-      numberOfLike={event.like}
+      numberOfLike={event.likes}
     />
   )
 }

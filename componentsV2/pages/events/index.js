@@ -1,3 +1,4 @@
 import Details from "./Details";
+import TicketSelection from "./TicketSelection";
 
-export { Details };
+export { Details, TicketSelection };

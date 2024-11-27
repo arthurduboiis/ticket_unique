@@ -18,11 +18,10 @@ const Details = ({
   toggleLiked,
   numberOfLike,
 }) => {
-
   let interestedPeopleText = "Il n'y a pas encore de participants intéressés";
-  if (numberOfLike === 1) {
+  if (numberOfLike.length === 1) {
     interestedPeopleText = "1 personne intéressée";
-  } else if (numberOfLike > 1) {
+  } else if (numberOfLike.length > 1) {
     interestedPeopleText = `${numberOfLike} personnes intéressées`;
   }
 
@@ -66,7 +65,6 @@ const Details = ({
       return `Du ${startDayName} ${startDay} ${startMonthName} au ${endDayName} ${endDay} ${endMonthName}`;
     }
   };
-  console.log(source);
   return (
     <Container.PageContainer
       justifyContent={"space-between"}
@@ -81,7 +79,7 @@ const Details = ({
           </Typo.OwnersText>
           {organizerName}
         </Typo.OwnersText>
-        <Container.RowContainer gap={"10px"}>
+        <Container.RowContainer gap={"10px"} alignItems={'center'}>
           <LikeCheckbox liked={liked} toggleLiked={toggleLiked} />
           <Typo.OwnersText >{interestedPeopleText}</Typo.OwnersText>
         </Container.RowContainer>
@@ -91,7 +89,7 @@ const Details = ({
         {mood ? (
           <Container.ColContainer gap={"5px"}>
             <Typo.OwnersText uppercase>{"Mood"}</Typo.OwnersText>
-            <Tag.Base title={mood} />
+            <Tag.Base title={mood} alignSelf={'flex-start'} />
           </Container.ColContainer>
         ) : null}
         <Typo.OwnersText uppercase>{"Organisé par"}</Typo.OwnersText>
