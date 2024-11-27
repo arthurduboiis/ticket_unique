@@ -4,6 +4,7 @@ import useAuthStore from "../store/authStore";
 
 const API_URL = process.env.URL_BACKEND;
 
+
 // Créez une instance Axios avec une base URL
 const api = axios.create({
   baseURL: API_URL,

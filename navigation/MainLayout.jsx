@@ -7,7 +7,7 @@ import CustomHeader from './CustomHeader';
 // import PaymentSuccess from '../screens/singles/PaymentSuccess';
 // import EditProfile from '../screens/singles/EditProfile';
 // import Organizer from '../screens/singles/Organizer';
-import { Profile } from '../componentsV2/pages';
+import { Events, Profile } from '../componentsV2/pages';
 
 const Stack = createNativeStackNavigator();
 
@@ -29,7 +29,7 @@ function MainLayout() {
         component={Organizer}
         options={{ headerShown: true }}
       /> */}
-      {/* <Stack.Screen name="Event" component={Event} /> */}
+      <Stack.Screen name="Event" component={Events.Details} />
       {/* <Stack.Screen name="EventPayment" component={EventPayment} />
       <Stack.Screen
         name="EventTicketSelection"

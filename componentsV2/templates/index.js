@@ -3,5 +3,6 @@ import Home from './Home';
 import Tickets from './Tickets';
 import Profile from './Profile';
 import * as ProfileTemplate from './profileTemplate';
+import * as EventsTemplate from './eventsTemplate';
 
-export { AuthTemplate, Home, Profile, Tickets, ProfileTemplate };
+export { AuthTemplate, Home, Profile, Tickets, ProfileTemplate, EventsTemplate };

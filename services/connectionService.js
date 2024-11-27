@@ -72,7 +72,7 @@ const refreshAccessToken = async () => {
   }
   catch (error) {
 
-    console.error("Failed to refresh access token:", error.response);
+    console.error("Failed to refresh access token:", error);
     throw error;
   }
 }

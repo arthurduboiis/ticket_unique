@@ -1,9 +1,9 @@
-import React from 'react';
-import { Container, Typo } from '../atoms';
-import { CardEvent, SearchBar } from '../organismes';
+import React from "react";
+import { Container, Typo } from "../atoms";
+import { CardEvent, SearchBar } from "../organismes";
 // import ModalMessage from '../../components/ModalSearch';
-import { RefreshControl } from 'react-native';
-import { Colors } from '../../constants/Colors';
+import { RefreshControl } from "react-native";
+import { Colors } from "../../constants/Colors";
 
 const Home = ({
   searchPhrase,
@@ -19,17 +19,18 @@ const Home = ({
   toggleLiked,
   liked,
 }) => {
-  const formatDate = (timestamp) => {
-    const dateObject = new Date(timestamp * 1000);
-    const day = String(dateObject.getDate()).padStart(2, '0');
-    const month = String(dateObject.getMonth() + 1).padStart(2, '0');
-    let year = dateObject.getFullYear();
-    year = year.toString().slice(-2);
+  const formatDate = (date) => {
+    const dateObj = new Date(date);
+    const day = dateObj.getDate();
+    const month = dateObj.getMonth() + 1;
+    const year = dateObj.getFullYear();
+    if (month < 10) {
+      return `${day}-0${month}-${year}`;
+    }
     return `${day}-${month}-${year}`;
   };
-
   return (
-    <Container.PageContainer gap={'20px'}>
+    <Container.PageContainer gap={"20px"}>
       {/* <ModalMessage
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
@@ -49,21 +50,21 @@ const Home = ({
           />
         }
       >
-        { events && 
+        {events &&
           events.map((event) => (
             <CardEvent
               key={event.id}
               name={event.title}
-              eventDate={formatDate(event.date.seconds)}
+              eventDate={formatDate(event.startDate)}
               action={() => handleEventPress(event)}
               eventImage={event.image}
               price={event.startingPrice}
-              place={event.city + ' - ' + event.salle}
+              place={event.city + " - " + event.place}
               liked={liked[event.id]}
               toggleLiked={() => toggleLiked(event.id)}
               rectangle
-              width={'100%'}
-              marginBottom={'20px'}
+              width={"100%"}
+              marginBottom={"20px"}
             />
           ))}
       </Container.ScrollContainer>

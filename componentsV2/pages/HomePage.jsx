@@ -1,27 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import Home from '../templates/Home';
+import React, { useEffect, useState } from "react";
+import Home from "../templates/Home";
 // import {
 //   fetchEvents,
 //   fetchMyFavEvents,
 //   updateFavEvents,
 // } from '../../DAL/DAO_events';
-
+import { fetchEvents, getFilteredEvents } from "../../services/eventsService";
+import useFilterStore from "../../store/FilterStore";
+import useEventsStore from "../../store/EventsStore";
 
 const HomePage = ({ navigation }) => {
-  const [events, setEvents] = useState([]);
   const [likedEvents, setLikedEvents] = useState({});
-  const [searchPhrase, setSearchPhrase] = useState('');
+  const [searchPhrase, setSearchPhrase] = useState("");
   const [activeFilters, setActiveFilters] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
+  const [filteredEvents, setFilteredEvents] = useState([]);
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setRefreshing(false);
-  //   }, 2000);
-  // }, [refreshing]);
+  const { events } = useEventsStore();
+  useEffect(() => {
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }, [refreshing]);
 
-  // const { filteredCity, filteredDate } = useFilterStore();
+  const { filteredCity, filteredDate } = useFilterStore();
 
   // useEffect(() => {
   //   fetchEvents(searchPhrase, filteredCity, filteredDate)
@@ -30,6 +33,16 @@ const HomePage = ({ navigation }) => {
 
   //   fetchFavEvents();
   // }, [searchPhrase, filteredCity, filteredDate]);
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
+
+  useEffect(() => {
+    getFilteredEvents(searchPhrase, filteredCity, filteredDate)
+      .then((data) => setFilteredEvents(data))
+      .catch((error) => console.log(error));
+  }, [searchPhrase, filteredCity, filteredDate, events]);
 
   // async function fetchFavEvents() {
   //   const favEvents = await fetchMyFavEvents(auth.currentUser.uid);
@@ -40,20 +53,13 @@ const HomePage = ({ navigation }) => {
   //   setLikedEvents(likedEvents);
   // }
 
-  // const handleRefresh = () => {
-  //   setRefreshing(true);
-  //   fetchEvents()
-  //     .then((data) => {
-  //       setEvents(data);
-  //       setRefreshing(false);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //       setRefreshing(false);
-  //     });
-  //   fetchFavEvents();
-  //   console.log(events);
-  // };
+  const handleRefresh = () => {
+    setRefreshing(true);
+    fetchEvents();
+    getFilteredEvents(searchPhrase, filteredCity, filteredDate)
+      .then((data) => setFilteredEvents(data))
+      .catch((error) => console.log(error));
+  };
 
   // const handleEventPress = (event) => {
   //   logEvent('click_event', {
@@ -96,23 +102,15 @@ const HomePage = ({ navigation }) => {
   //   await updateFavEvents(auth.currentUser.uid, favUserEvents);
   // };
 
-  const handleRefresh = () => {
-    setRefreshing(true);
-    setTimeout(() => {
-      setRefreshing(false);
-    }, 2000);
-  };
-
   const handleEventPress = (event) => {
-    console.log(event);
-  }
+    navigation.navigate("Event", {
+      event: event
+    });
+  };
 
   const toggleLike = (eventId) => {
     console.log(eventId);
-  }
-
-  
-
+  };
 
   return (
     <Home
@@ -124,7 +122,7 @@ const HomePage = ({ navigation }) => {
       setModalVisible={setModalVisible}
       refreshing={refreshing}
       handleRefresh={handleRefresh}
-      events={events}
+      events={filteredEvents}
       handleEventPress={handleEventPress}
       liked={likedEvents}
       toggleLiked={toggleLike}
