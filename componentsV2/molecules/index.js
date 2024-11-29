@@ -10,5 +10,6 @@ import OrgaItem from "./OrgaItem";
 import LabeledInput from "./LabeledInput";
 import ConnectionHeader from "./ConnectionHeader";
 import * as Modal from "./Modal";
+import TicketSelectedRow from "./TicketSelectedRow";
 
-export { IconButton, SecondaryButton, FollowingButton, LikeCheckbox, FilterButton, Display, DisplayDescription, ProfileList, LabeledInput, ConnectionHeader, Modal, OrgaItem };
+export { IconButton, SecondaryButton, FollowingButton, LikeCheckbox, FilterButton, Display, DisplayDescription, ProfileList, LabeledInput, ConnectionHeader, Modal, OrgaItem, TicketSelectedRow };

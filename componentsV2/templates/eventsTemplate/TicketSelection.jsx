@@ -5,12 +5,15 @@ import { TicketSelected } from "../../organismes";
 
 const TicketSelection = ({
   categories,
-  quantity,
-  incrementQuantity,
-  decrementQuantity,
+  ticketCounts,
+  incrementTicketCount,
+  decrementTicketCount,
+  totalTickets,
+  totalPrice,
+  goToEventPayment
 }) => {
   return (
-    <Container.PageContainer>
+    <Container.PageContainer justifyContent={'space-between'} paddingBottom={'0px'}>
       <Container.ColContainer gap={"20px"}>
         <Typo.Gotham uppercase text={"Tickets"} />
         <Container.ColContainer gap={"10px"}>
@@ -18,14 +21,14 @@ const TicketSelection = ({
             <TicketSelectionRow
               key={index}
               category={category}
-              quantity={quantity}
-              incrementQuantity={incrementQuantity}
-              decrementQuantity={decrementQuantity}
+              ticketCounts={ticketCounts}
+              incrementTicketCount={incrementTicketCount}
+              decrementTicketCount={decrementTicketCount}
             />
           ))}
         </Container.ColContainer>
       </Container.ColContainer>
-      {quantity > 0 ? <TicketSelected /> : null}
+      {totalTickets > 0 ? <TicketSelected totalTickets={totalTickets} totalPrice={totalPrice} goNext={goToEventPayment} buttonTitle={'suivant'} /> : null}
     </Container.PageContainer>
   );
 };

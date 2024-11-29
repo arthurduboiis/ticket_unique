@@ -30,7 +30,7 @@ function MainLayout() {
         options={{ headerShown: true }}
       /> */}
       <Stack.Screen name="Event" component={Events.Details} />
-      {/* <Stack.Screen name="EventPayment" component={EventPayment} /> */}
+      <Stack.Screen name="EventPayment" component={Events.Payment} />
       <Stack.Screen
         name="EventTicketSelection"
         component={Events.TicketSelection}
