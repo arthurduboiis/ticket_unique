@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { useThemeColor } from '../../../hooks/useThemeColor';
 
 const StyledModalContent = styled.View`
-    backgroundColor: ${useThemeColor("primaryLight")};
+    backgroundColor: ${props => props.bgColor};
     paddingVertical: 44px;
     paddingHorizontal: 20px;
     borderTopLeftRadius: 30px;
@@ -24,7 +24,7 @@ const ModalContainer = ({ modalVisible, closeModal, ...props }) => {
         margin: 0,
       }}
     >
-      <StyledModalContent>{props.children}</StyledModalContent>
+      <StyledModalContent bgColor={useThemeColor("primaryLight")}>{props.children}</StyledModalContent>
     </Modal>
   );
 };

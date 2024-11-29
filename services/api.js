@@ -2,7 +2,12 @@ import axios from "axios";
 import * as SecureStore from "expo-secure-store";
 import useAuthStore from "../store/authStore";
 
-const API_URL = process.env.URL_RENDER;
+let API_URL;
+if(process.env.NODE_ENV === 'development') {
+  API_URL = process.env.URL_BACKEND;
+} else {
+  API_URL = process.env.URL_RENDER;
+}
 
 
 // Créez une instance Axios avec une base URL

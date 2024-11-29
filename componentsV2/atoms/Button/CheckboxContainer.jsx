@@ -6,9 +6,9 @@ import { useThemeColor } from '../../../hooks/useThemeColor'
 const StyledCheckbox = styled.View`
   width: 14px;
   height: 14px;
-  border: 1px solid ${useThemeColor("primaryLight")};
+  border: 1px solid ${props => props.borderColor ? props.borderColor : 'transparent'};
   border-radius: 2px;
-  background-color: ${props => props.checked ? useThemeColor("primaryLight") : useThemeColor("transparent")};
+  background-color: ${props => props.bgColor ? props.bgColor : 'transparent'};
 `
 
 
@@ -24,7 +24,7 @@ const CheckboxContainer = ({action = () => {}, title, checked = false ,...props}
       onPress={action}
       bgColor={useThemeColor("transparent")}
     >
-      <StyledCheckbox checked={checked} />
+      <StyledCheckbox checked={checked} bgColor={checked ? useThemeColor("primaryLight") : useThemeColor("transparent")} borderColor={useThemeColor("primaryLight")}/>
       <Native.StyledOwnersText fontSize={'14px'} color={useThemeColor("primaryLight")}>{title ? title : defaultText}</Native.StyledOwnersText>
     </Native.StyledButton>
   )

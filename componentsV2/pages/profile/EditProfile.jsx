@@ -177,6 +177,10 @@ const EditProfile = () => {
     hideDatePicker();
   };
 
+  const updateProfile = async () => {
+    console.log('update profile');
+  }
+
   return (
     <ProfileTemplate.EditProfile
       isDatePickerVisible={isDatePickerVisible}
