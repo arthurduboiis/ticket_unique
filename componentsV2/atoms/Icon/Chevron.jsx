@@ -1,8 +1,8 @@
 import React from 'react';
 import { Svg, Path } from 'react-native-svg';
-import { Colors } from '../../../constants/Colors';
+import { useThemeColor } from '../../../hooks/useThemeColor';
 
-const Chevron = ({ width = 18, height = 18, color = Colors.light.primaryLight, direction = 'right' }) => {
+const Chevron = ({ width = 18, height = 18, color = useThemeColor("primaryLight"), direction = 'right' }) => {
   // Calculer le `viewBox` en fonction des props width et height pour qu'il reste proportionnel
   const viewBox = `0 0 24 24`;
 

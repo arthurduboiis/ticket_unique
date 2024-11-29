@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { View, StyleSheet, Pressable } from 'react-native';
 import { Input, Icon } from '../atoms';
-import { Colors } from '../../constants/Colors';
+import { useThemeColor } from '../../hooks/useThemeColor';
 import Eye from '../../assets/eye.svg';
 import EyeOff from '../../assets/eye_off.svg';
 import { Feather } from '@expo/vector-icons';
@@ -34,13 +34,13 @@ const LabeledInput = ({
             translateY: 0,
             translateX: 0,
             fontSize: 15,
-            color: Colors.light.dimmedLight,
+            color: useThemeColor("dimmedLight"),
           },
           1: {
             translateY: -27,
             translateX: -10,
             fontSize: 12,
-            color: Colors.light.primaryLight,
+            color: useThemeColor("primaryLight"),
           },
         },
         400
@@ -59,13 +59,13 @@ const LabeledInput = ({
             translateY: -27,
             translateX: -10,
             fontSize: 12,
-            color: Colors.light.primaryLight,
+            color: useThemeColor("primaryLight"),
           },
           1: {
             translateY: 0,
             translateX: 0,
             fontSize: 15,
-            color: Colors.light.dimmedLight,
+            color: useThemeColor("dimmedLight"),
           },
         },
         400
@@ -107,7 +107,7 @@ const LabeledInput = ({
         style: {
           transform: [{ translateY: -27 }, { translateX: -10 }],
           fontSize: 12,
-          color: Colors.light.primaryLight,
+          color: useThemeColor("primaryLight"),
         },
       });
       setHasValue(true);
@@ -143,7 +143,7 @@ const LabeledInput = ({
         <Feather
           name="search"
           size={20}
-          color={Colors.light.primaryLight}
+          color={useThemeColor("primaryLight")}
           style={{
             position: 'absolute',
             right: 10,

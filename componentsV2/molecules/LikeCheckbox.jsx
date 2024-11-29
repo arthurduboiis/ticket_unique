@@ -3,7 +3,7 @@ import { Native } from '../nanites';
 import { Icon } from '../atoms';
 import EventLikedIcon from '../../assets/icon_event_liked.svg';
 import EventNotLikedIcon from '../../assets/icon_event_not_liked.svg';
-import { Colors } from '../../constants/Colors';
+import { useThemeColor } from '../../hooks/useThemeColor';
 
 const LikeCheckbox = ({liked, toggleLiked = () => {}, ...props}) => {
 
@@ -15,7 +15,7 @@ const LikeCheckbox = ({liked, toggleLiked = () => {}, ...props}) => {
       accessibilityRole="checkbox"
       accessibilityLabel="Like Checkbox"
       accessibilityState={{ liked }}
-      bgColor={Colors.light.primaryDark50}
+      bgColor={useThemeColor("primaryDark")}
       width={'30px'}
       height={'30px'}
       paddingHorizontal={'0'}

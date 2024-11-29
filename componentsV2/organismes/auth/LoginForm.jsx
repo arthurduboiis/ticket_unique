@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Container, Typo } from '../../atoms';
 import { LabeledInput, SecondaryButton } from '../../molecules';
-import { Colors } from '../../../constants/Colors';
+import { useThemeColor } from '../../../hooks/useThemeColor';
 
 const LoginForm = ({
   email,
@@ -22,7 +22,7 @@ const LoginForm = ({
           paddingVertical={'10px'}
         >
           {error ? (
-            <Typo.OwnersText color={Colors.light.dimmedLight} >{error}</Typo.OwnersText>
+            <Typo.OwnersText color={useThemeColor("dimmedLight")} >{error}</Typo.OwnersText>
               
           ) : null}
           <LabeledInput

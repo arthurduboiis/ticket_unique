@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Container, Typo } from '../../atoms';
 import { Modal, View, TouchableWithoutFeedback } from 'react-native';
 // import BirthdatePicker from '../../../components/BirthdatePicker';
-import { Colors } from '../../../constants/Colors';
+import { useThemeColor } from '../../../hooks/useThemeColor';
 // import { modalStyle } from '../../../styles/modal';
 import { EditProfileForm } from '../../organismes';
 import { ScrollContainer } from '../../atoms/Container';
@@ -46,14 +46,14 @@ const EditProfile = ({
                   <Button.Base
                     text="appliquer"
                     onPress={applySelectedDate}
-                    backgroundColor={Colors.light.primaryDark}
+                    backgroundColor={useThemeColor("primaryDark")}
                   />
                   <SecondaryButton
                     text="annuler"
                     onPress={hideDatePicker}
                     chevronLeft={true}
-                    textStyle={{ color: Colors.light.primaryDark }}
-                    chevronColor={Colors.light.primaryDark}
+                    textStyle={{ color: useThemeColor("primaryDark") }}
+                    chevronColor={useThemeColor("primaryDark")}
                   />
                 </View>
               </View>

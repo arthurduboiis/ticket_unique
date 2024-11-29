@@ -1,6 +1,6 @@
 import React from 'react'
 import { Native } from '../nanites'
-import { Colors } from '../../constants/Colors'
+import { useThemeColor } from '../../hooks/useThemeColor';
 import { Chevron } from '../atoms/Icon'
 
 const FollowingButton = ({title = 'suivi', action = () => {}, ...props}) => {
@@ -11,12 +11,12 @@ const FollowingButton = ({title = 'suivi', action = () => {}, ...props}) => {
         action()
         console.log("Following button pressed")
       }}
-      bgColor={Colors.light.dimmedLight}
+      bgColor={useThemeColor("dimmedLight")}
       paddingHorizontal={'10px'}
       paddingVertical={'6px'}
     >
-      <Native.StyledOwnersText color={Colors.light.primaryLight}>{title}</Native.StyledOwnersText>
-      <Chevron color={Colors.light.primaryLight} direction='down'/>
+      <Native.StyledOwnersText color={useThemeColor("primaryLight")}>{title}</Native.StyledOwnersText>
+      <Chevron color={useThemeColor("primaryLight")} direction='down'/>
     </Native.StyledButton>
   )
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Icon, Typo } from '../atoms';
 import { Chevron } from '../atoms/Icon';
-import { Colors } from '../../constants/Colors';
+import { useThemeColor } from '../../hooks/useThemeColor';
 
 const ProfileList = ({ action = () => {}, title, red = false, arrow = true, ...props }) => {
   const defaultTitle = 'profile list';
@@ -11,7 +11,7 @@ const ProfileList = ({ action = () => {}, title, red = false, arrow = true, ...p
       <Typo.OwnersText
         color={red && redColor}
       >{title ? title : defaultTitle}</Typo.OwnersText>
-      {arrow && <Chevron color={Colors.light.primaryLight} />}
+      {arrow && <Chevron color={useThemeColor("primaryLight")} />}
     </Container.SectionList>
   );
 };

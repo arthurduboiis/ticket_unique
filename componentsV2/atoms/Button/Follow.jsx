@@ -1,12 +1,12 @@
 import React from 'react';
 import { Native } from '../../nanites';
-import { Colors } from '../../../constants/Colors';
+import { useThemeColor } from '../../../hooks/useThemeColor';
 
 const Follow = ({ title, action = () => {} }) => {
   const defaultTitle = 'Follow';
   return (
     <Native.StyledButton paddingHorizontal={"10px"} paddingVertical={"6px"}>
-      <Native.StyledOwnersText color={Colors.light.primaryDark}>
+      <Native.StyledOwnersText color={useThemeColor("primaryDark")}>
         {title ? title : defaultTitle}
       </Native.StyledOwnersText>
     </Native.StyledButton>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Typo, Button } from "../../atoms";
 import { LabeledInput } from "../../molecules";
-import { Colors } from "../../../constants/Colors";
+import { useThemeColor } from '../../../hooks/useThemeColor';
 
 const RegisterForm = ({
   email,
@@ -27,7 +27,7 @@ const RegisterForm = ({
         paddingVertical={"10px"}
       >
         {error ? (
-          <Typo.OwnersText color={Colors.light.dimmedLight}>
+          <Typo.OwnersText color={useThemeColor("dimmedLight")}>
             {error}
           </Typo.OwnersText>
         ) : null}
@@ -68,7 +68,7 @@ const RegisterForm = ({
                   onPress={handlePressURL}
                 >{"conditions générales d’utilisation et de vente "}</Typo.OwnersText>
                 <Typo.OwnersText
-                  color={Colors.light.yellow}
+                  color={useThemeColor("yellow")}
                   fontSize={"14px"}
                 >{"*"}</Typo.OwnersText>
               </>
