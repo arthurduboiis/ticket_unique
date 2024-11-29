@@ -1,4 +1,3 @@
-import { Colors } from '../../../constants/Colors'
 import { useThemeColor } from '../../../hooks/useThemeColor';
 import { Native } from "../../nanites";
 
@@ -15,7 +14,7 @@ const Base = ({ title, action = () => {} , modalMode = false,...props}) => {
       bgColor={modalMode ? useThemeColor("primaryDark") : useThemeColor("yellow")}
       {...props}
     >
-      <Native.StyledOwnersText fontSize="18px" color={modalMode ? Colors.light.primaryLight : Colors.light.primaryDark}>
+      <Native.StyledOwnersText fontSize="18px" color={modalMode ? useThemeColor("primaryLight") : useThemeColor("primaryDark")}>
         {title ? title : defaultTitle}
       </Native.StyledOwnersText>
     </Native.StyledButton>

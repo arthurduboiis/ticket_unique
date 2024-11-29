@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, ImageCustom, Typo } from "../atoms";
-import { Colors } from "../../constants/Colors";
+import { useThemeColor } from '../../hooks/useThemeColor';
 
 const OrgaItem = ({
   source,
@@ -20,7 +20,7 @@ const OrgaItem = ({
         <Typo.OwnersText>
           {orgaName ? orgaName : "Nom de l'organisation"}
         </Typo.OwnersText>
-        <Typo.OwnersText color={Colors.light.dimmedLight}>
+        <Typo.OwnersText color={useThemeColor("dimmedLight")}>
           {followersNumber ? followersNumber + " followers" : "0 follower"}
         </Typo.OwnersText>
         <Typo.OwnersText>

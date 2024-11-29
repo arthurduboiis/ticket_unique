@@ -3,7 +3,8 @@ import { Container } from "../atoms";
 import { HorizontalCardEvent, HeaderTickets } from "../organismes";
 // import ModalMessage from '../../components/ModalSearch';
 import { RefreshControl } from 'react-native';
-import { Colors } from '../../constants/Colors'
+import { useThemeColor } from "../../hooks/useThemeColor";
+
 
 const Tickets = ({
   tickets,
@@ -38,7 +39,7 @@ const Tickets = ({
           <RefreshControl
             refreshing={refreshing}
             onRefresh={handleRefresh}
-            tintColor={Colors.light.primaryLight}
+            tintColor={useThemeColor('primaryLight')}
           />
         }
       >

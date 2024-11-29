@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Container } from '../../atoms';
 import { SecondaryButton } from '../../molecules';
-import { Colors } from '../../../constants/Colors';
+import { useThemeColor } from '../../../hooks/useThemeColor';
 
 
 const Footer = ({

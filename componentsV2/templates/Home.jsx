@@ -1,9 +1,9 @@
 import React from "react";
-import { Container, Typo } from "../atoms";
+import { Container } from "../atoms";
 import { CardEvent, SearchBar } from "../organismes";
 // import ModalMessage from '../../components/ModalSearch';
 import { RefreshControl } from "react-native";
-import { Colors } from "../../constants/Colors";
+import { useThemeColor } from "../../hooks/useThemeColor";
 
 const Home = ({
   searchPhrase,
@@ -46,7 +46,7 @@ const Home = ({
           <RefreshControl
             refreshing={refreshing}
             onRefresh={handleRefresh}
-            tintColor={Colors.light.primaryLight}
+            tintColor={useThemeColor("primaryLight")}
           />
         }
       >

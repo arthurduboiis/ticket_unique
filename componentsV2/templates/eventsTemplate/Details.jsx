@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Container, ImageCustom, Tag, Typo } from "../../atoms";
-import { Colors } from "../../../constants/Colors";
+import { useThemeColor } from '../../../hooks/useThemeColor';
 import { LikeCheckbox, OrgaItem } from "../../molecules";
 
 const Details = ({
@@ -76,7 +76,7 @@ const Details = ({
         <ImageCustom.Rectangle source={imageURL} />
         <Typo.Gotham text={eventTitle} />
         <Typo.OwnersText>
-          <Typo.OwnersText color={Colors.light.dimmedLight}>
+          <Typo.OwnersText color={useThemeColor("dimmedLight")}>
             Par{" "}
           </Typo.OwnersText>
           {organizerName}
