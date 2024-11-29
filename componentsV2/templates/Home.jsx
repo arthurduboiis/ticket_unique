@@ -19,16 +19,7 @@ const Home = ({
   toggleLiked,
   liked,
 }) => {
-  const formatDate = (date) => {
-    const dateObj = new Date(date);
-    const day = dateObj.getDate();
-    const month = dateObj.getMonth() + 1;
-    const year = dateObj.getFullYear();
-    if (month < 10) {
-      return `${day}-0${month}-${year}`;
-    }
-    return `${day}-${month}-${year}`;
-  };
+ 
   return (
     <Container.PageContainer gap={"20px"}>
       {/* <ModalMessage
@@ -55,7 +46,7 @@ const Home = ({
             <CardEvent
               key={event.id}
               name={event.title}
-              eventDate={formatDate(event.startDate)}
+              eventDate={event.startDate}
               action={() => handleEventPress(event)}
               eventImage={event.image}
               price={event.startingPrice}

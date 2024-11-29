@@ -5,7 +5,7 @@ const StyledTag = styled.View`
   padding-horizontal: ${(props) => props.paddingHorizontal ? props.paddingHorizontal : props.theme.container.tag.padding.horizontal};
   padding-vertical: ${(props) => props.paddingVertical ? props.paddingVertical : props.theme.container.tag.padding.vertical};
   border-radius: 5px;
-  align-self: flex-start;
+  ${(props) => props.alignSelf ? `align-self: ${props.alignSelf};` : ''}
 `;
 
 export default StyledTag;
