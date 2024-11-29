@@ -10,7 +10,7 @@ const ProfilePage = () => {
   const navigation = useNavigation();
   const [logoutModalVisible, setLogoutModalVisible] = useState(false);
   const [firstName, setFirstName] = useState('Mon profil');
-  const [photoURL, setPhotoURL] = useState(null);
+  const [photoURL, setPhotoURL] = useState("https://via.placeholder.com/120");
 
   // useEffect(() => {
   //   const fetchUserData = async () => {

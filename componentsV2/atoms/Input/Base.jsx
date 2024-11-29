@@ -1,18 +1,18 @@
 import React from 'react'
 import styled from 'styled-components/native';
-import { Colors } from '../../../constants/Colors';
+import { useThemeColor } from '../../../hooks/useThemeColor';
 
 
 const StyledInputText = styled.TextInput`
   background-color: ${(props) =>
-    props.isFocused ? Colors.light.thirdDark : Colors.light.secondaryDark};
+    props.isFocused ? useThemeColor("thirdDark") : useThemeColor("secondaryDark")};
   font-size: ${(props) => props.fontSize ? props.fontSize : "16px"};
   border-radius: 5px;
   padding-horizontal: 20px;
   padding-vertical: 10px;
   width: ${(props) => props.width ? props.width : "100%"};
   color: ${(props) => props.color ?? "white"};
-  placeholderTextColor: ${(props) => props.placeholderTextColor ? props.placeholderTextColor : Colors.light.dimmedLight};
+  placeholderTextColor: ${(props) => props.placeholderTextColor ? props.placeholderTextColor : useThemeColor("dimmedLight")};
 `;
 
 
@@ -21,7 +21,7 @@ const Base = ({ value, onChangeText, onBlur, onFocus,...props }) => (
   <StyledInputText
     value={value}
     onChangeText={onChangeText}
-    placeholderTextColor={Colors.light.dimmedLight}
+    placeholderTextColor={useThemeColor("dimmedLight")}
     onBlur={onBlur}
     onFocus={onFocus}
     {...props}

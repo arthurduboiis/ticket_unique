@@ -1,11 +1,11 @@
-import { Colors } from '../../../constants/Colors';
+import { useThemeColor } from '../../../hooks/useThemeColor';
 import { Native } from '../../nanites';
 
 const Base = ({ title, ...props }) => {
   const defaultTitle = 'Tag field';
   return (
     <Native.StyledTag {...props}>
-      <Native.StyledOwnersText color={Colors.light.primaryDark}>
+      <Native.StyledOwnersText color={useThemeColor("primaryDark")}>
         {title || title >= 0 ? title : defaultTitle}
       </Native.StyledOwnersText>
     </Native.StyledTag>

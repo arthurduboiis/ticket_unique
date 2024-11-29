@@ -9,11 +9,6 @@ const Settings = () => {
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const menu = [
     {
-      title: 'Préférences',
-      click: () => navigation.navigate('EditPreferences'),
-    },
-
-    {
       title: 'Modifier mon mot de passe',
       click: () => navigation.navigate('ChangePassword'),
     },
@@ -29,13 +24,6 @@ const Settings = () => {
       click: () =>
         Linking.openURL(
           'https://unique-ticket.com/cgv/?utm_source=app&utm_medium=profil&utm_campaign=settings'
-        ),
-    },
-    {
-      title: "Conditions Générales d'Utilisation",
-      click: () =>
-        Linking.openURL(
-          'https://unique-ticket.com/cgu/?utm_source=app&utm_medium=profil&utm_campaign=settings'
         ),
     },
     {
@@ -58,9 +46,6 @@ const Settings = () => {
     deleteModalVisible={deleteModalVisible}
     handleOutsideClick={handleOutsideClick}
     closeModalDelete={closeModalDelete}
-  
-  
-  
   />);
 };
 

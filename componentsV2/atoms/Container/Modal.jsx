@@ -1,9 +1,9 @@
 import Modal from "react-native-modal";
 import styled from "styled-components/native";
-import { Colors } from "../../../constants/Colors";
+import { useThemeColor } from '../../../hooks/useThemeColor';
 
 const StyledModalContent = styled.View`
-    backgroundColor: ${Colors.light.primaryLight};
+    backgroundColor: ${useThemeColor("primaryLight")};
     paddingVertical: 44px;
     paddingHorizontal: 20px;
     borderTopLeftRadius: 30px;

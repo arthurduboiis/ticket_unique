@@ -1,13 +1,14 @@
 import React from 'react'
 import { Native } from '../../nanites'
 import styled from 'styled-components/native'
-import { Colors } from '../../../constants/Colors'
+import { useThemeColor } from '../../../hooks/useThemeColor'
+
 const StyledCheckbox = styled.View`
   width: 14px;
   height: 14px;
-  border: 1px solid ${Colors.light.primaryLight};
+  border: 1px solid ${useThemeColor("primaryLight")};
   border-radius: 2px;
-  background-color: ${props => props.checked ? Colors.light.primaryLight : Colors.light.transparent};
+  background-color: ${props => props.checked ? useThemeColor("primaryLight") : useThemeColor("transparent")};
 `
 
 
@@ -21,10 +22,10 @@ const CheckboxContainer = ({action = () => {}, title, checked = false ,...props}
       justifyContent={'flex-start'}
       alignItems={'flex-start'}
       onPress={action}
-      bgColor={Colors.light.transparent}
+      bgColor={useThemeColor("transparent")}
     >
       <StyledCheckbox checked={checked} />
-      <Native.StyledOwnersText fontSize={'14px'} color={Colors.light.primaryLight}>{title ? title : defaultText}</Native.StyledOwnersText>
+      <Native.StyledOwnersText fontSize={'14px'} color={useThemeColor("primaryLight")}>{title ? title : defaultText}</Native.StyledOwnersText>
     </Native.StyledButton>
   )
 }
