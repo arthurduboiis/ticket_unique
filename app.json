@@ -15,10 +15,7 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "ticketunique.com",
-      "infoPlist": {
-        "UIViewControllerBasedStatusBarAppearance": true
-      }
+      "bundleIdentifier": "ticketunique.com"
     },
     "android": {
       "adaptiveIcon": {

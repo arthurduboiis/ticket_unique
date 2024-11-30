@@ -10,7 +10,7 @@ const SearchBar = ({
   ...props
 }) => {
   return (
-    <Container.RowContainer gap={'20px'}  width={'70%'}>
+    <Container.RowContainer gap={'20px'}  width={'60%'}>
       <FilterButton action={openFilter} notification={activeFilters} />
       <LabeledInput
         placeholder={'Rechercher...'}

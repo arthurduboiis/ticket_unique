@@ -8,8 +8,6 @@ if(process.env.NODE_ENV === 'development') {
 } else {
   API_URL = process.env.URL_RENDER;
 }
-
-
 // Créez une instance Axios avec une base URL
 const api = axios.create({
   baseURL: API_URL,

@@ -12,7 +12,7 @@ export const login = async (email, password) => {
 
   try {
     const response = await api.post("/auth/login", { email, password });
-    const { access_token, refresh_token } = response.data;
+    const { access_token, refresh_token, user } = response.data;
 
     if (!isTokenValid(access_token)) {
       throw new Error("Invalid access token received.");
@@ -21,11 +21,9 @@ export const login = async (email, password) => {
     // Sauvegarder les tokens
     setAccessToken(access_token);
     await saveRefreshToken(refresh_token);
-
     // Mettre à jour l'utilisateur
-    setUser(jwtDecode(access_token));
+    setUser(user);
 
-    console.log("Login successful");
   } catch (error) {
     console.log("ERROR", error);
     const status = error.response?.status;
@@ -119,7 +117,7 @@ export const register = async (email, password, passwordConfirm) => {
     console.log("Registering user with email:", email);
     console.log(api);
     const response = await api.post("/auth/register", { email, password });
-    const { access_token, refresh_token } = response.data;
+    const { access_token, refresh_token, user } = response.data;
 
     if (!isTokenValid(access_token)) {
       throw new Error("Invalid access token received.");
@@ -130,7 +128,7 @@ export const register = async (email, password, passwordConfirm) => {
     await saveRefreshToken(refresh_token);
 
     // Mettre à jour l'utilisateur
-    setUser(jwtDecode(access_token));
+    setUser(user);
 
 
     console.log("Registration successful");
