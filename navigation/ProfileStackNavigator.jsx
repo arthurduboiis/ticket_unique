@@ -67,13 +67,16 @@ function ProfileStackNavigator() {
         component={Profile.Settings}
         options={{ headerShown: true }}
       />
-      {/* <Stack.Screen
-        name="Transaction"
-        component={Transaction}
-        options={{ headerShown: true }}
-      />
-      <Stack.Screen name="EditInterests" component={EditInterests} />
       <Stack.Screen
+        name="EditProfile"
+        component={Profile.EditProfile}
+        options={{
+          animationTypeForReplace: 'push',
+          headerShown: true,
+          animation: 'slide_from_right',
+        }}
+      />
+      {/* <Stack.Screen
         name="OldEvent"
         component={OldEvent}
         options={{
@@ -86,7 +89,7 @@ function ProfileStackNavigator() {
         name="OldEventDetails"
         component={OldEventDetails}
         options={{ headerShown: true }}
-      /> */}
+      />  */}
     </Stack.Navigator>
   );
 }

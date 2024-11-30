@@ -36,15 +36,7 @@ function MainLayout() {
         component={Events.TicketSelection}
       />
       {/* <Stack.Screen name="PaymentSuccess" component={PaymentSuccess} /> */}
-      <Stack.Screen
-        name="EditProfile"
-        component={Profile.EditProfile}
-        options={{
-          animationTypeForReplace: 'push',
-          headerShown: true,
-          animation: 'slide_from_right',
-        }}
-      />
+      
     </Stack.Navigator>
   );
 }

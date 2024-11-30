@@ -12,8 +12,10 @@ export const getUserById = async (id) => {
 }
 
 export const updateUser = async (id, data) => {
+  const { setUser } = useAuthStore.getState();
   try {
-    const response = await api.put(`/users/${id}`, data);
+    const response = await api.patch(`/users/${id}`, data);
+    setUser(response.data);
     return response.data;
   } catch (error) {
     console.error("Failed to update user:", error);

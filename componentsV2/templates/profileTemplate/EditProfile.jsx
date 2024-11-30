@@ -1,12 +1,12 @@
 import React from 'react';
 import { Button, Container, Typo } from '../../atoms';
 import { Modal, View, TouchableWithoutFeedback } from 'react-native';
-// import BirthdatePicker from '../../../components/BirthdatePicker';
+import BirthdatePicker from '../../olderComponentsToRefractor/BirthdatePicker';
 import { useThemeColor } from '../../../hooks/useThemeColor';
-// import { modalStyle } from '../../../styles/modal';
+import { modalStyle } from '../../../styles/modal';
 import { EditProfileForm } from '../../organismes';
 import { ScrollContainer } from '../../atoms/Container';
-// import ModalMessage from '../../../components/ModalMessage';
+import ModalMessage from '../../olderComponentsToRefractor/ModalMessage';
 import { SecondaryButton } from '../../molecules';
 
 const EditProfile = ({
@@ -28,7 +28,7 @@ const EditProfile = ({
 }) => {
   return (
     <Container.PageContainer canBack gap={'20px'}>
-      {/* <Modal
+      <Modal
         animationType="slide"
         transparent={true}
         visible={isDatePickerVisible}
@@ -44,12 +44,12 @@ const EditProfile = ({
                 />
                 <View style={[modalStyle.buttonContainer]}>
                   <Button.Base
-                    text="appliquer"
+                    title="appliquer"
                     onPress={applySelectedDate}
                     backgroundColor={useThemeColor("primaryDark")}
                   />
                   <SecondaryButton
-                    text="annuler"
+                    title="annuler"
                     onPress={hideDatePicker}
                     chevronLeft={true}
                     textStyle={{ color: useThemeColor("primaryDark") }}
@@ -65,7 +65,7 @@ const EditProfile = ({
             modalVisible={modal}
             message={message}
             setModalVisible={setModal}
-          /> */}
+          />
       <ScrollContainer>
         <Container.ColContainer gap={'20px'}>
           <Typo.Gotham text={'Modifier mes infos'} uppercase />

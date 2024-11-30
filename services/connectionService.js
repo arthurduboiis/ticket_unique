@@ -22,6 +22,7 @@ export const login = async (email, password) => {
     setAccessToken(access_token);
     await saveRefreshToken(refresh_token);
     // Mettre à jour l'utilisateur
+    console.log("USER", user);
     setUser(user);
 
   } catch (error) {
@@ -65,9 +66,9 @@ const refreshAccessToken = async () => {
 
     setAccessToken(newAccessToken);
 
-    await setUser(jwtDecode(newAccessToken));
+    await setUser(response.data.user);
 
-    return newAccessToken;
+    return {newAccessToken, user: response.data.user};
   }
   catch (error) {
 
@@ -86,10 +87,10 @@ export const initializeSession = async () => {
       return;
     }
     if (refreshToken && isTokenValid(refreshToken)) {
-      const accessToken = await refreshAccessToken();
+      const {accessToken, user} = await refreshAccessToken();
       setAccessToken(accessToken);
 
-      await setUser(jwtDecode(accessToken));
+      await setUser(user);
     } else {
       console.log("No valid session found. User not logged in.");
     }

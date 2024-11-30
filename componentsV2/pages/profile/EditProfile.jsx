@@ -3,6 +3,8 @@ import { ProfileTemplate } from '../../templates';
 import { useNavigation } from '@react-navigation/core';
 
 import { Alert } from 'react-native';
+import useAuthStore from '../../../store/authStore';
+import { updateUser } from '../../../services/usersService';
 
 const EditProfile = () => {
   const [metadata, setMetadata] = useState({
@@ -77,22 +79,21 @@ const EditProfile = () => {
     setHasUnsavedChanges(true); // Marque les changements comme non sauvegardés
   };
 
-  // useEffect(() => {
-  //   const userDoc = doc(db, 'users', auth.currentUser.uid);
-  //   const unsubscribe = onSnapshot(userDoc, (snapshot) => {
-  //     const data = snapshot.data();
-  //     if (data?.birthday && data.birthday !== NaN) {
-  //       data.birthday = new Date(data.birthday);
-  //     }
-  //     if (data?.brevoContactId) {
-  //       setBrevoContactId(data.brevoContactId);
-  //     }
-
-  //     setMetadata(data);
-  //   });
-
-  //   return () => unsubscribe();
-  // }, []);
+  useEffect(() => {
+    const { user } = useAuthStore.getState();
+    console.log('user', user);
+    if (user) {
+      setMetadata({
+        lastname: user.lastname,
+        firstname: user.firstname,
+        phone: user.phone,
+        email: user.email,
+        birthday: user.birthday ? new Date(user.birthday) : null,
+        gender: user.gender,
+        region: user.region
+      });
+    }
+  }, []);
 
   // const updateProfile = async () => {
   //   metadata.email = auth?.currentUser?.email;
@@ -178,7 +179,13 @@ const EditProfile = () => {
   };
 
   const updateProfile = async () => {
-    console.log('update profile');
+    const { user } = useAuthStore.getState();
+    if (!user) return;
+
+    await updateUser(user.id, metadata);
+    setHasUnsavedChanges(false);
+    setModal(true);
+    setMessage('Informations mises à jour');
   }
 
   return (

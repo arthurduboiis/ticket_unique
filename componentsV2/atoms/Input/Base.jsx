@@ -11,7 +11,7 @@ const StyledInputText = styled.TextInput`
   padding-horizontal: 20px;
   padding-vertical: 10px;
   width: ${(props) => props.width ? props.width : "100%"};
-  color: ${(props) => props.color ?? "white"};
+  color: ${(props) => props.color };
   placeholderTextColor: ${(props) => props.placeholderTextColor ? props.placeholderTextColor : useThemeColor("dimmedLight")};
 `;
 
@@ -24,6 +24,7 @@ const Base = ({ value, onChangeText, onBlur, onFocus,...props }) => (
     placeholderTextColor={useThemeColor("dimmedLight")}
     onBlur={onBlur}
     onFocus={onFocus}
+    color={useThemeColor("primaryLight")}
     {...props}
   />
 );

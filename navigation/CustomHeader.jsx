@@ -13,6 +13,7 @@ import Resell from '../assets/resell.svg';
 import Arrow from '../assets/arrow.svg';
 import ArrowLight from '../assets/arrow_light.svg';
 import { useThemeStore } from '../store/ThemeStore';
+import { useThemeColor } from '../hooks/useThemeColor';
 
 const CustomHeader = () => {
   const navigation = useNavigation();
@@ -23,7 +24,6 @@ const CustomHeader = () => {
 
   const styles = StyleSheet.create({
     headerWithGoBack: {
-      backgroundColor: Colors.light.primaryDark,
       paddingTop: insets.top,
       width: '100%',
       minHeight: 50,
@@ -97,7 +97,7 @@ const CustomHeader = () => {
   if (navigation && navigation.canGoBack()) {
     return (
       <View>
-        <View style={styles.headerWithGoBack}>
+        <View style={{...styles.headerWithGoBack, backgroundColor: useThemeColor('primaryDark')}}>
           {route.name !== 'TicketTransferSuccess' ? (
             <Pressable
               onPress={() => navigation.goBack()}
