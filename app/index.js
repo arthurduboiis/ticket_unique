@@ -17,10 +17,14 @@ import {
   SignupPage,
 } from "../componentsV2/pages/auth";
 import { NavigationContainer } from "@react-navigation/native";
+import { SafeAreaView, View } from "react-native";
 
 const Stack = createNativeStackNavigator();
 
 const theme = {
+  colors: {
+    backgroundColor: "#FF6666",
+  },
   container: {
     colors: {
       transparent: "rgba(0, 0, 0, 0)",
@@ -56,15 +60,13 @@ export default function Page() {
     initializeSession();
   }, []);
 
-
-
   return (
     <GestureHandlerRootView>
       <ThemeProvider theme={theme}>
         <SafeAreaProvider>
-          <NavigationContainer independent={true}>
-            {user ? <MainStackNavigator /> : <AuthStackNavigator />}
-          </NavigationContainer>
+            <NavigationContainer independent={true}>
+              {user ? <MainStackNavigator /> : <AuthStackNavigator />}
+            </NavigationContainer>
         </SafeAreaProvider>
       </ThemeProvider>
     </GestureHandlerRootView>
@@ -75,7 +77,6 @@ const AuthStackNavigator = () => (
   <Stack.Navigator
     screenOptions={{
       header: (props) => <CustomHeader {...props} />,
-      contentStyle: { backgroundColor: "#030303" },
     }}
   >
     <Stack.Screen
@@ -103,11 +104,16 @@ const AuthStackNavigator = () => (
 const MainStackNavigator = () => (
   <Stack.Navigator
     initialRouteName="MainLayout"
-    screenOptions={{ header: (props) => <CustomHeader {...props} />,
-    contentStyle: { backgroundColor: "#030303" },
-  }}
+    screenOptions={{ header: (props) => <CustomHeader {...props} /> }}
   >
-    <Stack.Screen name="MainLayout" component={MainLayout} />
-    {/* <Stack.Screen name="Event" component={Event} /> */}
+    <Stack.Screen
+      name="MainLayout"
+      component={MainLayout}
+      options={{
+        headerShown: false,
+        animationTypeForReplace: "push",
+        animation: "slide_from_right",
+      }}
+    />
   </Stack.Navigator>
 );

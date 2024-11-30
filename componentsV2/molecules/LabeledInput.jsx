@@ -1,10 +1,13 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { View, StyleSheet, Pressable } from 'react-native';
+import { View, Pressable } from 'react-native';
 import { Input, Icon } from '../atoms';
 import { useThemeColor } from '../../hooks/useThemeColor';
 import Eye from '../../assets/eye.svg';
+import EyeLight from '../../assets/eye_light.svg';
 import EyeOff from '../../assets/eye_off.svg';
+import EyeOffLight from '../../assets/eye_off_light.svg';
 import { Feather } from '@expo/vector-icons';
+import { useThemeStore } from '../../store/ThemeStore';
 
 const LabeledInput = ({
   label,
@@ -19,6 +22,9 @@ const LabeledInput = ({
   const [hasValue, setHasValue] = useState(!!value);
   const labelRef = useRef(null);
   const [isPasswordSecure, setIsPasswordSecure] = useState(true);
+  const theme = useThemeStore((state) => state.theme);
+  const dimmedLight = useThemeColor("dimmedLight");
+  const primaryLight = useThemeColor("primaryLight");
 
   const togglePasswordVisibility = () => {
     setIsPasswordSecure(!isPasswordSecure);
@@ -26,7 +32,7 @@ const LabeledInput = ({
 
   const handleFocus = () => {
     setIsFocused(true);
-
+   
     if (!value) {
       labelRef.current.animate(
         {
@@ -34,13 +40,13 @@ const LabeledInput = ({
             translateY: 0,
             translateX: 0,
             fontSize: 15,
-            color: useThemeColor("dimmedLight"),
+            color: dimmedLight,
           },
           1: {
             translateY: -27,
             translateX: -10,
             fontSize: 12,
-            color: useThemeColor("primaryLight"),
+            color: primaryLight,
           },
         },
         400
@@ -59,13 +65,13 @@ const LabeledInput = ({
             translateY: -27,
             translateX: -10,
             fontSize: 12,
-            color: useThemeColor("primaryLight"),
+            color: primaryLight,
           },
           1: {
             translateY: 0,
             translateX: 0,
             fontSize: 15,
-            color: useThemeColor("dimmedLight"),
+            color: dimmedLight,
           },
         },
         400
@@ -87,7 +93,7 @@ const LabeledInput = ({
           }}
         >
           <Icon.Base
-            source={isPasswordSecure ? Eye : EyeOff}
+            source={isPasswordSecure ? theme === 'light' ? EyeLight : Eye : theme === 'light' ? EyeLight : EyeOff}
             width={24}
             height={24}
           />
@@ -107,7 +113,7 @@ const LabeledInput = ({
         style: {
           transform: [{ translateY: -27 }, { translateX: -10 }],
           fontSize: 12,
-          color: useThemeColor("primaryLight"),
+          color: primaryLight,
         },
       });
       setHasValue(true);

@@ -28,12 +28,9 @@ export const login = async (email, password) => {
     console.log("Login successful");
   } catch (error) {
     console.log("ERROR", error);
-    console.log("ERROR RESPONSE", error.response);
-    console.log("ERROR RESPONSE DATA", error.response.data);
-    console.log("ERROR RESPONSE STATUS", error.response.status);
     const status = error.response?.status;
     const message = error.response?.data?.message || "An error occurred during login.";
-
+    console.log("STATUS", status);
     if (status === 401) {
       throw new Error(message);
     }
@@ -82,7 +79,7 @@ const refreshAccessToken = async () => {
 }
 
 export const initializeSession = async () => {
-  const { getRefreshToken, isTokenValid, setAccessToken, setUser } = useAuthStore.getState();
+  const { getRefreshToken, isTokenValid, setAccessToken, setUser, removeRefreshToken } = useAuthStore.getState();
 
   try {
     const refreshToken = await getRefreshToken();
@@ -100,6 +97,7 @@ export const initializeSession = async () => {
     }
   } catch (error) {
     console.error("Failed to initialize session:", error);
+    await removeRefreshToken();
     setAccessToken(null);
     setUser(null);
   }

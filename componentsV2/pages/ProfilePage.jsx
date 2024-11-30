@@ -111,14 +111,14 @@ const ProfilePage = () => {
       title: 'Anciens tickets',
       click: () => navigation.navigate('OldEvent'),
     },
-    {
-      title: 'Wallet',
-      click: () => navigation.navigate('MyWallet'),
-    },
-    {
-      title: 'Transactions',
-      click: () => navigation.navigate('MyTransactions'),
-    },
+    // {
+    //   title: 'Wallet',
+    //   click: () => navigation.navigate('MyWallet'),
+    // },
+    // {
+    //   title: 'Transactions',
+    //   click: () => navigation.navigate('MyTransactions'),
+    // },
     {
       title: 'Paramètres',
       click: () => navigation.navigate('Settings'),
