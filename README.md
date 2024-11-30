@@ -1,50 +1,74 @@
-# Welcome to your Expo app 👋
+# 🎫 Ticket Unique Mobile App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This project is a mobile application built with **React Native** and **Expo**, following the **Atomic Design** architecture. Below are the steps to set up and run the project.
 
-## Get started
+## 📋 Requirements
 
-1. Install dependencies
+Ensure you have the following installed on your system:
 
-   ```bash
-   npm install
-   ```
+- [Node.js](https://nodejs.org/) (version 16 or higher)
+- [npm](https://www.npmjs.com/) (comes with Node.js)
+- [Expo CLI](https://expo.dev/tools#cli)
 
-2. Start the app
-
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+You can install Expo CLI globally by running:
 
 ```bash
-npm run reset-project
+npm install -g expo-cli
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 💻 Installation
 
-## Learn more
+Clone the repository
+```bash
+git clone https://github.com/arthurduboiis/ticket_unique.git
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+Install dependencies
+```bash
+npm install
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## 🏃 Running the App
 
-## Join the community
+To run the app on different platforms, use the following commands:
 
-Join our community of developers creating universal apps.
+Start the development server
+```bash
+npm start
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+After starting the development server, you can choose how to launch the project:
+
+- For iOS: Press `i` in the terminal
+- For Android: Press `a` in the terminal
+- For Web: Press `w` in the terminal
+- For Expo Go: Scan the QR code with the Expo Go app
+
+## 🌐 Backend API
+
+The backend is available at the following URL :
+https://unique-ticket-backend-8qym.onrender.com/api
+
+## 🤝 Contribution
+
+We welcome contributions! Follow these steps to contribute:
+
+Fork the repository.
+
+Create a new branch:
+```bash
+git checkout -b feature/your-feature-name
+```
+
+Commit your changes:
+```bash
+git add .
+git commit -m "feat: your commit message"
+```
+
+Push to the branch:
+```bash
+git push origin feature/your-feature-name
+```
+
+Go to your Github Repo and Open a Pull Request
