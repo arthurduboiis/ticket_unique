@@ -3,10 +3,14 @@ import { Native } from '../nanites';
 import { Icon } from '../atoms';
 import EventLikedIcon from '../../assets/icon_event_liked.svg';
 import EventNotLikedIcon from '../../assets/icon_event_not_liked.svg';
+import EventNotLikedIconDark from '../../assets/icon_event_not_liked_dark.svg';
+import EventLikedIconDark from '../../assets/icon_event_liked_dark.svg';
 import { useThemeColor } from '../../hooks/useThemeColor';
+import { useThemeStore } from '../../store/ThemeStore';
 
 const LikeCheckbox = ({liked, toggleLiked = () => {}, ...props}) => {
 
+  const theme = useThemeStore((state) => state.theme);
 
   return (
     <Native.StyledButton
@@ -22,11 +26,7 @@ const LikeCheckbox = ({liked, toggleLiked = () => {}, ...props}) => {
       paddingVertical={'0px'}
       {...props}
     >
-      {liked ? (
-        <Icon.Base source={EventLikedIcon} /> // Icône pour "liké"
-      ) : (
-        <Icon.Base source={EventNotLikedIcon} /> // Icône pour "non liké"
-      )}
+      <Icon.Base source={liked ? theme === 'light' ? EventLikedIconDark : EventLikedIcon : theme === 'light' ? EventNotLikedIconDark : EventNotLikedIcon} />
     </Native.StyledButton>
   );
 };

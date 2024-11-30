@@ -8,6 +8,7 @@ const PageContainer = (props) => {
   return (
     <Native.StyledContainer
       paddingHorizontal={'15px'}
+      height={'100%'}
       paddingTop={!props.canBack && `${insets.top}px`}
       paddingBottom={`${insets.bottom + 80}px`}
       flexDirection={'column'}

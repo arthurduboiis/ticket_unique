@@ -11,12 +11,16 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Resell from '../assets/resell.svg';
 import Arrow from '../assets/arrow.svg';
+import ArrowLight from '../assets/arrow_light.svg';
+import { useThemeStore } from '../store/ThemeStore';
 
 const CustomHeader = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const insets = useSafeAreaInsets();
   const [menuVisible, setMenuVisible] = useState(false);
+  const theme = useThemeStore((state) => state.theme);
+
   const styles = StyleSheet.create({
     headerWithGoBack: {
       backgroundColor: Colors.light.primaryDark,
@@ -99,7 +103,7 @@ const CustomHeader = () => {
               onPress={() => navigation.goBack()}
               style={styles.arrow}
             >
-              <Arrow />
+              {theme === 'light' ? <ArrowLight /> : <Arrow />}
             </Pressable>
           ) : (
             <View style={styles.box} />

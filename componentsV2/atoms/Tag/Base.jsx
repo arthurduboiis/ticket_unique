@@ -5,7 +5,7 @@ const Base = ({ title, ...props }) => {
   const defaultTitle = 'Tag field';
   return (
     <Native.StyledTag {...props}>
-      <Native.StyledOwnersText color={useThemeColor("primaryDark")}>
+      <Native.StyledOwnersText color={useThemeColor("primaryLight")}>
         {title || title >= 0 ? title : defaultTitle}
       </Native.StyledOwnersText>
     </Native.StyledTag>

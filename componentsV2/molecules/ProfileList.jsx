@@ -9,7 +9,7 @@ const ProfileList = ({ action = () => {}, title, red = false, arrow = true, ...p
   return (
     <Container.SectionList action={action} width={'100%'} {...props}>
       <Typo.OwnersText
-        color={red && redColor}
+        color={red ? redColor : useThemeColor('primaryLight')}
       >{title ? title : defaultTitle}</Typo.OwnersText>
       {arrow && <Chevron color={useThemeColor("primaryLight")} />}
     </Container.SectionList>

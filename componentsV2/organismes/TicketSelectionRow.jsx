@@ -2,7 +2,10 @@ import React from "react";
 import { Container, Tag, Typo } from "../atoms";
 import { IconButton } from "../molecules";
 import Minus from "../../assets/minus.svg";
+import MinusLight from "../../assets/minus_light.svg";
 import Plus from "../../assets/plus.svg";
+import PlusLight from "../../assets/plus_light.svg";
+import { useThemeStore } from "../../store/ThemeStore";
 
 const TicketSelectionRow = ({
   category,
@@ -22,6 +25,8 @@ const TicketSelectionRow = ({
       decrementTicketCount(categoryName);
     }
   };
+  const theme = useThemeStore((state) => state.theme);
+
   return (
     <Container.RowContainer justifyContent={"space-between"}>
       <Container.ColContainer gap={"10px"}>
@@ -32,7 +37,7 @@ const TicketSelectionRow = ({
       </Container.ColContainer>
       <Container.RowContainer alignItems={"center"}>
         <IconButton
-          icon={Minus}
+          icon={theme === 'light' ? MinusLight : Minus}
           action={() => handleDecrement(category.categoryName)}
           bgColor={"transparent"}
         />
@@ -44,7 +49,7 @@ const TicketSelectionRow = ({
           }
         />
         <IconButton
-          icon={Plus}
+          icon={theme === 'light' ? PlusLight : Plus}
           action={() => handleIncrement(category.categoryName)}
           bgColor={"transparent"}
         />

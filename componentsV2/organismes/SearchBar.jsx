@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from '../atoms';
+import { Button, Container } from '../atoms';
 import { FilterButton, LabeledInput } from '../molecules';
 
 const SearchBar = ({
@@ -10,7 +10,7 @@ const SearchBar = ({
   ...props
 }) => {
   return (
-    <Container.RowContainer gap={'20px'}  width={'78%'}>
+    <Container.RowContainer gap={'20px'}  width={'70%'}>
       <FilterButton action={openFilter} notification={activeFilters} />
       <LabeledInput
         placeholder={'Rechercher...'}
@@ -19,6 +19,7 @@ const SearchBar = ({
         onChangeText={setSearchPhrase}
         icon="feather"
       />
+      <Button.SwitchDarkLightMode />
     </Container.RowContainer>
   );
 };
