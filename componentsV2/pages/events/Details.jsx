@@ -22,9 +22,6 @@ const Details = ({route, navigation}) => {
       source={event.company.companyLogo.url}
       startingPrice={event.startingPrice}
       action={goToTicketSelection}
-      liked={liked}
-      toggleLiked={() => setLiked(!liked)}
-      numberOfLike={event.likes}
     />
   )
 }

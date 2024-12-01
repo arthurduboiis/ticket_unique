@@ -18,12 +18,7 @@ const Details = ({
   toggleLiked,
   numberOfLike,
 }) => {
-  let interestedPeopleText = "Il n'y a pas encore de participants intéressés";
-  if (numberOfLike.length === 1) {
-    interestedPeopleText = "1 personne intéressée";
-  } else if (numberOfLike.length > 1) {
-    interestedPeopleText = `${numberOfLike} personnes intéressées`;
-  }
+ 
 
   const formatDate = (start, end) => {
     const startDate = new Date(start);
@@ -79,10 +74,7 @@ const Details = ({
           </Typo.OwnersText>
           {organizerName}
         </Typo.OwnersText>
-        <Container.RowContainer gap={"10px"} alignItems={'center'}>
-          <LikeCheckbox liked={liked} toggleLiked={toggleLiked} />
-          <Typo.OwnersText >{interestedPeopleText}</Typo.OwnersText>
-        </Container.RowContainer>
+      
         <Typo.OwnersText>{formatDate(startDate, endDate)}</Typo.OwnersText>
         <Typo.OwnersText uppercase>{"description"}</Typo.OwnersText>
         <Typo.OwnersText>{eventDescription}</Typo.OwnersText>

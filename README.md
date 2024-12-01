@@ -49,6 +49,9 @@ After starting the development server, you can choose how to launch the project:
 The backend is available at the following URL :
 https://unique-ticket-backend-8qym.onrender.com/api
 
+The code is located here : 
+https://github.com/arthurduboiis/unique-ticket-backend
+
 ## 🤝 Contribution
 
 We welcome contributions! Follow these steps to contribute:
@@ -72,3 +75,6 @@ git push origin feature/your-feature-name
 ```
 
 Go to your Github Repo and Open a Pull Request
+
+
+Put a star if you like the project <3

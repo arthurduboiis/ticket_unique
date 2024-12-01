@@ -18,6 +18,7 @@ import {
 } from "../componentsV2/pages/auth";
 import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaView, View } from "react-native";
+import { OfflinePage } from "../componentsV2/pages";
 
 const Stack = createNativeStackNavigator();
 
@@ -62,6 +63,7 @@ export default function Page() {
 
   return (
     <GestureHandlerRootView>
+      <OfflinePage />
       <ThemeProvider theme={theme}>
         <SafeAreaProvider>
             <NavigationContainer independent={true}>

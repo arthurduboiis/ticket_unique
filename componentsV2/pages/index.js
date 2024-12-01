@@ -5,5 +5,6 @@ import TicketsPage from './TicketsPage';
 import * as Profile from './profile';
 import * as Events from './events';
 import * as Tickets from './tickets';
+import OfflinePage from './OfflinePage';
 
-export { AuthPages, HomePage, ProfilePage, TicketsPage, Profile, Events, Tickets };
+export { AuthPages, HomePage, ProfilePage, TicketsPage, Profile, Events, Tickets, OfflinePage };
