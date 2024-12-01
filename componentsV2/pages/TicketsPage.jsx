@@ -1,12 +1,30 @@
 import React, { useEffect, useState } from "react";
 import Tickets from "../templates/Tickets";
+import useTicketsStore from "../../store/TicketsStore";
+import { fetchMyTickets } from "../../services/ticketsService";
 // import { fetchMyTickets } from '../../DAL/DAO_events';
 
 const TicketsPage = ({ navigation }) => {
-  const [tickets, setTickets] = useState([]);
+  const { tickets } = useTicketsStore.getState();
+  const [myTickets, setMyTickets] = useState([]);
   const [activeFilters, setActiveFilters] = useState(0);
   const [refreshing, setRefreshing] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+
+  useEffect(() => {
+    if (!tickets || tickets.length === 0) {
+       fetchMyTickets().then((data) => {
+        setMyTickets(data);
+      }
+      ).catch((error) => {
+        console.error(error);
+      }
+      );
+    } else {
+      setMyTickets(tickets);
+    }
+  }, [tickets]);
+
 
   // useEffect(() => {
   //   fetchMyTickets(auth.currentUser.uid, filteredCity, filteredDate)
@@ -50,7 +68,7 @@ const TicketsPage = ({ navigation }) => {
       setModalVisible={setModalVisible}
       refreshing={refreshing}
       handleRefresh={handleRefresh}
-      tickets={tickets}
+      tickets={myTickets}
       handleTicketPress={handleTicketPress}
     />
   );

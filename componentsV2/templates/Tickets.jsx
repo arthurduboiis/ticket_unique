@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container } from "../atoms";
 import { HorizontalCardEvent, HeaderTickets } from "../organismes";
 // import ModalMessage from '../../components/ModalSearch';
-import { RefreshControl } from 'react-native';
+import { RefreshControl } from "react-native";
 import { useThemeColor } from "../../hooks/useThemeColor";
-
 
 const Tickets = ({
   tickets,
@@ -16,20 +15,16 @@ const Tickets = ({
   refreshing,
   handleRefresh,
 }) => {
-  const formatDate = (timestamp) => {
-    const dateObject = new Date(timestamp * 1000);
-    const day = String(dateObject.getDate()).padStart(2, '0');
-    const month = String(dateObject.getMonth() + 1).padStart(2, '0');
-    let year = dateObject.getFullYear();
-    year = year.toString().slice(-2);
-    return `${day}-${month}-${year}`;
-  };
+
+  useEffect(() => {
+    tickets.map((ticket) => {
+      console.log(ticket.event.startDate);
+    });
+  }, []);
+
   return (
-    <Container.PageContainer gap='20px'>
-      <HeaderTickets
-        activeFilters={activeFilters}
-        openFilter={openFilter}
-      />
+    <Container.PageContainer gap="20px">
+      <HeaderTickets activeFilters={activeFilters} openFilter={openFilter} />
       {/* <ModalMessage
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
@@ -39,7 +34,7 @@ const Tickets = ({
           <RefreshControl
             refreshing={refreshing}
             onRefresh={handleRefresh}
-            tintColor={useThemeColor('primaryLight')}
+            tintColor={useThemeColor("primaryLight")}
           />
         }
       >
@@ -47,16 +42,15 @@ const Tickets = ({
           tickets.map((ticket) => (
             <HorizontalCardEvent
               key={ticket.id}
-              eventImage={ticket.image}
-              artist={ticket.title}
-              place={ticket.city + ' - ' + ticket.salle}
-              numberOfTickets={ticket.tickets.length}
-              eventDate={formatDate(ticket.date.seconds)}
+              eventImage={ticket.event.image}
+              name={ticket.event.title}
+              place={ticket.event.city + " - " + ticket.event.place}
+              numberOfTickets={ticket.length}
+              eventDate={ticket.event.startDate}
               action={() => handleTicketPress(ticket)}
-              marginBottom={'20px'}
+              marginBottom={"20px"}
             />
-          ))
-        }
+          ))}
       </Container.ScrollContainer>
     </Container.PageContainer>
   );

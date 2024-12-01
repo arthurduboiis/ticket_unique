@@ -6,11 +6,13 @@ import { useThemeColor } from '../../hooks/useThemeColor';
 const HorizontalCardEvent = ({ eventImage, name, place, numberOfTickets = 0, eventDate, action = () => { }, ...props }) => {
 
   const formatDate = (date) => {
+    console.log(date)
     const dateObj = new Date(date);
     const day = dateObj.getDate();
     const month = dateObj.getMonth() + 1;
     const year = dateObj.getFullYear();
     if (month < 10) {
+      console.log(`${day}-0${month}-${year}`)
       return `${day}-0${month}-${year}`;
     }
     return `${day}-${month}-${year}`;

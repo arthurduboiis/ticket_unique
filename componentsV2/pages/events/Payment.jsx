@@ -1,5 +1,6 @@
 import React from "react";
 import { EventsTemplate } from "../../templates";
+import { buyTickets } from "../../../services/eventsService";
 
 const Payment = ({ route, navigation }) => {
   const { event, ticketCounts, totalPrice, totalTickets } = route.params;
@@ -19,8 +20,16 @@ const Payment = ({ route, navigation }) => {
     {}
   );
 
-  buyTickets = () => {
-    console.log("buy tickets");
+  const checkout = async () => {
+    console.log(event.id)
+    console.log(ticketCountAndPrice)
+    try {
+      const response = await buyTickets(event.id, ticketCountAndPrice);
+      navigation.navigate("Mes tickets")
+    }
+    catch (error) {
+      console.log(error)
+    }
   };
   return (
     <EventsTemplate.Payment
@@ -30,7 +39,7 @@ const Payment = ({ route, navigation }) => {
       eventPlace={event.place}
       totalPrice={totalPrice}
       totalTickets={totalTickets}
-      buyTickets={buyTickets}
+      buyTickets={checkout}
       ticketCountAndPrice={ticketCountAndPrice}
     />
   );
