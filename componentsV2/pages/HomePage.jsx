@@ -5,9 +5,10 @@ import Home from "../templates/Home";
 //   fetchMyFavEvents,
 //   updateFavEvents,
 // } from '../../DAL/DAO_events';
-import { fetchEvents, getFilteredEvents } from "../../services/eventsService";
+import { fetchEvents, fetchMyFavEvents, getFilteredEvents, likeEvent, removeLikeEvent } from "../../services/eventsService";
 import useFilterStore from "../../store/FilterStore";
 import useEventsStore from "../../store/EventsStore";
+import useAuthStore from "../../store/authStore";
 
 const HomePage = ({ navigation }) => {
   const [likedEvents, setLikedEvents] = useState({});
@@ -26,17 +27,22 @@ const HomePage = ({ navigation }) => {
 
   const { filteredCity, filteredDate } = useFilterStore();
 
-  // useEffect(() => {
-  //   fetchEvents(searchPhrase, filteredCity, filteredDate)
-  //     .then((data) => setEvents(data))
-  //     .catch((error) => console.log(error));
-
-  //   fetchFavEvents();
-  // }, [searchPhrase, filteredCity, filteredDate]);
-
   useEffect(() => {
     fetchEvents();
+
+    fetchFavEvents();
+    
   }, []);
+
+  const fetchFavEvents = async () => {
+    const { user } = useAuthStore.getState();
+    const favEvents = await fetchMyFavEvents(user.id);
+    const likedEvents = {};
+    favEvents.forEach((event) => {
+      likedEvents[event.id] = true;
+    });
+    setLikedEvents(likedEvents);
+  }
 
   useEffect(() => {
     getFilteredEvents(searchPhrase, filteredCity, filteredDate)
@@ -61,46 +67,21 @@ const HomePage = ({ navigation }) => {
       .catch((error) => console.log(error));
   };
 
-  // const handleEventPress = (event) => {
-  //   logEvent('click_event', {
-  //     eventName: event.title,
-  //     // organizerName : {nom.orga},
-  //     source: 'home_page',
-  //   });
-  //   navigation.navigate('Event', {
-  //     eventId: event.id,
-  //     startingPrice: event.startingPrice,
-  //   });
-  // };
 
-  // const toggleLike = async (eventId) => {
-  //   const newLikedEvents = { ...likedEvents };
-  //   newLikedEvents[eventId] = !newLikedEvents[eventId];
-  //   setLikedEvents(newLikedEvents);
-  //   const favUserEvents = await fetchMyFavEvents(auth.currentUser.uid);
-  //   const eventRef = doc(db, 'events', eventId);
-  //   const eventDoc = await getDoc(eventRef);
-  //   if (newLikedEvents[eventId]) {
-  //     await setDoc(
-  //       eventRef,
-  //       {
-  //         likes: eventDoc.data().likes + 1,
-  //       },
-  //       { merge: true }
-  //     );
-  //     favUserEvents.push(eventRef);
-  //   } else {
-  //     await setDoc(
-  //       eventRef,
-  //       {
-  //         likes: eventDoc.data().likes - 1,
-  //       },
-  //       { merge: true }
-  //     );
-  //     favUserEvents.splice(favUserEvents.indexOf(eventRef), 1);
-  //   }
-  //   await updateFavEvents(auth.currentUser.uid, favUserEvents);
-  // };
+  const toggleLike = async (eventId) => {
+    const { user } = useAuthStore.getState();
+    console.log(user)
+    const newLikedEvents = { ...likedEvents };
+    newLikedEvents[eventId] = !newLikedEvents[eventId];
+    const favUserEvents = user.liked;
+    console.log(favUserEvents);
+    setLikedEvents(newLikedEvents);
+    if (newLikedEvents[eventId]) {
+      likeEvent(eventId);
+    } else {
+      removeLikeEvent(eventId);
+    }
+  };
 
   const handleEventPress = (event) => {
     navigation.navigate("Event", {
@@ -108,9 +89,6 @@ const HomePage = ({ navigation }) => {
     });
   };
 
-  const toggleLike = (eventId) => {
-    console.log(eventId);
-  };
 
   return (
     <Home

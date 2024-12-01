@@ -28,31 +28,12 @@ function ProfileStackNavigator() {
         component={ProfilePage}
         options={{ headerShown: false }}
       />
-      {/* <Stack.Screen
+       <Stack.Screen
         name="FavEvent"
-        component={FavEvent}
-        options={{ headerShown: true }}
-      />
-      <Stack.Screen
-        name="MyWallet"
-        component={MyWallet}
-        options={{ headerShown: true }}
-      />
-      <Stack.Screen
-        name="MyTransactions"
-        component={MyTransactions}
+        component={Profile.FavEvent}
         options={{ headerShown: true }}
       />
 
-      <Stack.Screen
-        name="EditPreferences"
-        component={EditPreference}
-        options={{
-          animationTypeForReplace: 'push',
-          animation: 'slide_from_right',
-          headerShown: true,
-        }}
-      /> */}
       <Stack.Screen
         name="ChangePassword"
         component={ChangePassword}

@@ -82,3 +82,41 @@ export const buyTickets = async (eventId, tickets) => {
     throw error;
   }
 };
+
+export const likeEvent = async (eventId) => {
+  const { user } = useAuthStore.getState();
+  try {
+    const response = await api.post(`/user-liked-events`, {
+      userId: user.id,
+      eventId: eventId,
+    });
+    console.log('liked event', response.data);
+  } catch (error) {
+    console.error("Failed to like event:", error);
+    throw error;
+  }
+}
+
+export const removeLikeEvent = async (eventId) => {
+  const { user } = useAuthStore.getState();
+  try {
+    const response = await api.post(`/user-liked-events/remove`, {
+      userId: user.id,
+      eventId: eventId,
+    });
+    console.log('removed like event', response.data);
+  } catch (error) {
+    console.error("Failed to remove like event:", error);
+    throw error;
+  }
+}
+
+export const fetchMyFavEvents = async (userId) => {
+  try {
+    const response = await api.get(`/user-liked-events/${userId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Failed to fetch fav events:", error);
+    throw error;
+  }
+}
